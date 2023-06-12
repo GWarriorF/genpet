@@ -47,13 +47,15 @@ public class MenuPet {
 			System.out.println(
 					"*    7 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Vacinas" + Cores.TEXT_RESET + "               *");
 			System.out.println(
-					"*    8 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Banho e Tosa" + Cores.TEXT_RESET + "          *");
+					"*    8 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Banho       " + Cores.TEXT_RESET + "          *");
 			System.out.println(
-					"*    9 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Castração" + Cores.TEXT_RESET + "             *");
+					"*    9 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Tosa        " + Cores.TEXT_RESET + "          *");
 			System.out.println(
-					"*    10 - " + Cores.TEXT_YELLOW_BRIGHT + "Visualizar Cadastro      " + Cores.TEXT_RESET + "    *");
+					"*    10 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Castração" + Cores.TEXT_RESET + "             *");
 			System.out.println(
-					"*    11 - " + Cores.TEXT_YELLOW_BRIGHT + "Finalizar Cadastro       " + Cores.TEXT_RESET + "    *");
+					"*    11 - " + Cores.TEXT_YELLOW_BRIGHT + "Visualizar Cadastro      " + Cores.TEXT_RESET + "    *");
+			System.out.println(
+					"*    12 - " + Cores.TEXT_YELLOW_BRIGHT + "Finalizar Cadastro       " + Cores.TEXT_RESET + "    *");
 
 			
 			
@@ -135,8 +137,6 @@ public class MenuPet {
 				try {
 				ficha.banhoGato();
 				ficha.banhoCachorro();
-				ficha.tosaGato();
-				ficha.tosaCachorro();
 				}catch(NullPointerException e)
 				{
 					System.out.println("\n  *--------*--------*--------*-------*");
@@ -147,8 +147,20 @@ public class MenuPet {
 				break;
 			case 9:
 				try {
-				ficha.castrarGato();
-				ficha.castrarCachorro();
+					ficha.tosaGato();
+					ficha.tosaCachorro();
+					}catch(NullPointerException e)
+					{
+						System.out.println("\n  *--------*--------*--------*-------*");
+						System.out.println("            Cadastro pendente         ");
+						System.out.println("  *--------*--------*--------*-------*");
+					}
+					KeyPress();
+					break;
+			case 10:
+				try {
+				ficha.printCadastroCachorro();
+				ficha.printCadastroGato();
 				}catch(NullPointerException e)
 				{
 					System.out.println("\n  *--------*--------*--------*-------*");
@@ -157,7 +169,7 @@ public class MenuPet {
 				}
 				KeyPress();
 				break;
-			case 10:
+			case 11: 
 				try {
 					ficha.printCadastroGato();
 					ficha.printCadastroCachorro();
@@ -169,12 +181,11 @@ public class MenuPet {
 					}
 					KeyPress();
 					break;
-				
-			case 11: 
-					ficha.saidaAnimal();
-					KeyPress();
-					break;
 			case 12:
+				ficha.saidaAnimal();
+				KeyPress();
+				break;
+			case 13:
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("           ExpedienteFinalizado      ");
 				System.out.println("  *--------*--------*--------*-------*");
@@ -192,7 +203,9 @@ public class MenuPet {
 				exibir = false;
 				break;
 			default:
-				System.out.println("Opção Inválida. Tente Novamente.");
+				System.out.println("\n  *--------*--------*--------*-------*");
+				System.out.println("              Opção Inválida        ");
+				System.out.println("  *--------*--------*--------*-------*");
 				KeyPress(); 
 				break;
 			}

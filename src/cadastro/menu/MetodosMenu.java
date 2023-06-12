@@ -73,7 +73,10 @@ public class MetodosMenu implements MenuRepositorio {
 	// Cadastro Animal Gato
 	@Override
 	public void cadastrarGato() {
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") && valorTotal == 0.0f && pelo == null) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") || 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Felina") && 
+			valorTotal == 0.0f && pelo == null) 
+		{
 			List<String> racas = CadastroAnimalGato.getRacas();
 			List<String> tipoPelo = CadastroAnimalGato.getTipoPelo();
 			
@@ -118,7 +121,9 @@ public class MetodosMenu implements MenuRepositorio {
 	// Cadastro Animal Cachorro
 	@Override
 	public void cadastrarCachorro() {
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina") && valorTotal == 0.0f && pelo == null) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino") && 
+			valorTotal == 0.0f && pelo == null) {
 			ArrayList<String> racasCachorro = CadastroAnimalCachorro.getRacaCachorros();
 			ArrayList<String> pelosCachorro = CadastroAnimalCachorro.getTipoPeloCachorros();
 
@@ -264,7 +269,8 @@ public class MetodosMenu implements MenuRepositorio {
 	{
 		Iterator<CadastroAnimalCachorro> iFichaCachorro = listaCadastroCachorro.iterator();
 		
-		if(especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")) 
+		if(especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) 
 		{	
 			if (iFichaCachorro.hasNext()) 
 			{
@@ -297,11 +303,11 @@ public class MetodosMenu implements MenuRepositorio {
 		}
 	}
 	
-	//Banho Gato
 	// Banho Gato Rita
 	@Override
 	public void banhoGato() {
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") || 
+				especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			if (pelo.equalsIgnoreCase("Curto")) {
 				valor = 30;
 				valorTotal += valor;
@@ -337,14 +343,13 @@ public class MetodosMenu implements MenuRepositorio {
 
 		}
 	}
-
-	//Banho Cachorro 
-	// Banho Cachorro Rita
 	
 	//Banho Cachorro
 	@Override
 	public void banhoCachorro() {
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina") || 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")
+				) {
 			if (pelo.equalsIgnoreCase("Curto")) {
 				valor = 120;
 				valorTotal += valor;
@@ -393,16 +398,15 @@ public class MetodosMenu implements MenuRepositorio {
 
 		}
 	}
-
-	//Vacinar
-	// Vacinar Gato Rita
 	
 	//Vacinar Gato
 	@Override
 	public void vacinarGato() {
 		int tipoVacina;
 		ArrayList<String> VacinasGato = Vacina.getVacinaGato();
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")|| 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) 
+		{
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("              Gato Vacinas ");
 			System.out.println("  *--------*--------*--------*-------*");
@@ -457,9 +461,6 @@ public class MetodosMenu implements MenuRepositorio {
 			}
 		}
 	}
-
-	//Vacinar
-	// Vacinar Cachorro Rita
 	
 	//Vacinar Cachorro
 	@Override
@@ -467,7 +468,8 @@ public class MetodosMenu implements MenuRepositorio {
 		int tipoVacina;
 		ArrayList<String> VacinasCachorro = Vacina.getVacinaCachorro();
 
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina") || 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("            Cachorro Vacinas ");
 			System.out.println("  *--------*--------*--------*-------*");
@@ -518,7 +520,8 @@ public class MetodosMenu implements MenuRepositorio {
 	@Override
 	public void tosaGato() {
 		
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")) 
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") || 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) 
 		{
 			if (pelo.equalsIgnoreCase("Curto")) {
 				valor = 50;
@@ -547,12 +550,12 @@ public class MetodosMenu implements MenuRepositorio {
 		}
 	}
 
-	// Tosa Cachorro
-	//Tosa Cachorro
+	
 	@Override
 	public void tosaCachorro() {
 
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
 			if (pelo.equalsIgnoreCase("Curto")) {
 				valor = 120;
 				valorTotal += valor;
@@ -602,7 +605,8 @@ public class MetodosMenu implements MenuRepositorio {
 		
 		Iterator<CadastroAnimalGato> iFichaGato = listaCadastroGato.iterator();
 
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") || 
+				especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			if (iFichaGato.hasNext()) {
 				CadastroAnimalGato fichaGato = iFichaGato.next();
 				if (fichaGato.getEspecie().replaceAll("\\s", "").equalsIgnoreCase("Felino")) {
@@ -624,7 +628,8 @@ public class MetodosMenu implements MenuRepositorio {
 	@Override
 	public void castrarCachorro() {
 		Iterator<CadastroAnimalCachorro> iFichaCachorro = listaCadastroCachorro.iterator();
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
+			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
 			if (iFichaCachorro.hasNext()) {
 				CadastroAnimal fichaCachorro = iFichaCachorro.next();
 				if (fichaCachorro.getEspecie().replaceAll("\\s", "").equalsIgnoreCase("Canina")) {
@@ -664,7 +669,12 @@ public class MetodosMenu implements MenuRepositorio {
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("        Agradecemos a preferência ");
 		System.out.println("  *--------*--------*--------*-------*");
-		
+
+		zerarVariaveis();
+	}
+	
+	public void zerarVariaveis() 
+	{
 		valorTotal = 0.0f;
 		especie = null;
 		nomeTutor = null;
@@ -680,7 +690,7 @@ public class MetodosMenu implements MenuRepositorio {
 		peso = 0.0f;
 	}
 	
-	//Confere se o cadastro já foi finalizado
+
 	//Confere se o cadastro foi finalizado ou não
 	public void cadastroEmAndamento()
 	{
@@ -782,10 +792,12 @@ public class MetodosMenu implements MenuRepositorio {
 		leia.skip("\\R?");
 		System.out.print("\nDigite a especie do seu pet: ");
 		lerString = leia.nextLine();
-		if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Felino")) 
+		if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Felino")|| 
+				lerString.replaceAll("\\s", "").equalsIgnoreCase("Felina")) 
 		{
 			buscarAnimalGato();
-		}else if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Canina")) 
+		}else if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
+				 lerString.replaceAll("\\s", "").equalsIgnoreCase("Canino")) 
 		{
 			buscarAnimalCachorro();
 		}else 
@@ -804,9 +816,9 @@ public class MetodosMenu implements MenuRepositorio {
 	public void atualizarCadastro() {
 		listarPets();
 		leia.skip("\\R?");
-		System.out.println("\n  -------------------------------*");
-		System.out.println("          Atualizando o Cadastro     ");
-		System.out.println("  -------------------------------*");
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("           Atualizando Cadastro");
+		System.out.println("  *--------*--------*--------*-------*");
 		System.out.print("Digite o nome do pet que deseja atualizar o cadastro: ");
 		String nomePet = leia.nextLine();
 		
@@ -815,51 +827,51 @@ public class MetodosMenu implements MenuRepositorio {
 		for (CadastroAnimalGato felino : listaCadastroGato) {
 			if (felino.getNomeAnimal().equalsIgnoreCase(nomePet)) {
 				encontrado = true;
-				System.out.print("\nDigite o nome atualizado do tutor: ");
+				System.out.print("Digite o novo nome do tutor: ");
 				String novoNomeTutor = leia.nextLine();
 				felino.setNomeDono(novoNomeTutor);
 				
-				System.out.print("\nDigite o novo CPF: ");
+				System.out.print("Digite o novo CPF: ");
 				String novoCPF = leia.nextLine();
 				felino.setCpf(novoCPF);
 				
-				System.out.print("\nDigite o endereço atualizado: ");
+				System.out.print("Digite o endereço: ");
 				String novoEndereco = leia.nextLine();
 				felino.setEndereco(novoEndereco);
 				
-				System.out.print("\nDigite o nome atualizado do pet: ");
+				System.out.print("Digite o nome atualizado do pet: ");
 				String novoNomePet = leia.nextLine();
 				felino.setNomeAnimal(novoNomePet);
 				
-				System.out.print("\nDigite uma nova cor: ");
+				System.out.print("Digite uma nova cor: ");
 				String novoCor = leia.nextLine();
 				felino.setCor(novoCor);
 				
-				System.out.print("\nDigite um novo sexo do pet: ");
+				System.out.print("Digite um novo sexo do pet: ");
 				String novoSexo = leia.nextLine();
 				felino.setSexo(novoSexo);
 				
-				System.out.print("\nDigite uma nova idade do pet: ");
+				System.out.print("Digite uma nova idade do pet: ");
 				String novoIdade = leia.nextLine();
 				felino.setIdade(novoIdade);
 				
-				System.out.print("\nDigite um novo peso do pet: ");
+				System.out.print("Digite um novo peso do pet: ");
 				float novoPeso = leia.nextFloat();
 				felino.setPeso(novoPeso);
 				
 				leia.skip("\\R?");
 				
-				System.out.print("\nDigite a espécie do pet (Felino ou Canino): ");
+				System.out.print("Digite a espécie do pet (Felino ou Canino): ");
 				String novoEspecie = leia.nextLine();
 				felino.setEspecie(novoEspecie);
 				
-				System.out.print("\nDigite o Tipo de Pelo: ");
+				System.out.print("Digite o Tipo de Pelo: ");
 				String novoPelo = leia.nextLine();
 				felino.setEspecie(novoPelo);
 				
-				System.out.println("\n  -------------------------------*");
-				System.out.println("     Cadastro atualizado com sucesso    ");
-				System.out.println("  -------------------------------*");
+				System.out.println("\n  *--------*--------*--------*-------*");
+				System.out.println("           Cadastro Atualizado");
+				System.out.println("  *--------*--------*--------*-------*");
 				break;
 			}
 		}
@@ -867,49 +879,49 @@ public class MetodosMenu implements MenuRepositorio {
 		if (encontrado == false) {
 			for (CadastroAnimalCachorro cachorro : listaCadastroCachorro) {
 				if (cachorro.getNomeAnimal().equalsIgnoreCase(nomePet)) {
-					System.out.print("\nDigite o nome atualizado do tutor: ");
+					System.out.print("Digite o nome atualizado do tutor: ");
 					String novoNomeTutor = leia.nextLine();
 					cachorro.setNomeDono(novoNomeTutor);
 					
-					System.out.print("\nDigite o novo CPF: ");
+					System.out.print("Digite o novo CPF: ");
 					String novoCPF = leia.nextLine();
 					cachorro.setCpf(novoCPF);
 					
-					System.out.print("\nDigite o endereço atualizado: ");
+					System.out.print("Digite o endereço atualizado: ");
 					String novoEndereco = leia.nextLine();
 					cachorro.setEndereco(novoEndereco);
 					
-					System.out.print("\nDigite o nome atualizado do pet: ");
+					System.out.print("Digite o nome atualizado do pet: ");
 					String novoNomePet = leia.nextLine();
 					cachorro.setNomeAnimal(novoNomePet);
 					
-					System.out.print("\nDigite uma nova cor: ");
+					System.out.print("Digite uma nova cor: ");
 					String novoCor = leia.nextLine();
 					cachorro.setCor(novoCor);
 					
-					System.out.print("\nDigite um novo sexo do pet: ");
+					System.out.print("Digite um novo sexo do pet: ");
 					String novoSexo = leia.nextLine();
 					cachorro.setSexo(novoSexo);
 					
-					System.out.print("\nDigite uma nova idade do pet: ");
+					System.out.print("Digite uma nova idade do pet: ");
 					String novoIdade = leia.nextLine();
 					cachorro.setIdade(novoIdade);
 					
-					System.out.print("\nDigite um novo peso do pet: ");
+					System.out.print("Digite um novo peso do pet: ");
 					float novoPeso = leia.nextFloat();
 					cachorro.setPeso(novoPeso);
 					
-					System.out.print("\nDigite a espécie do pet (Felino ou Canino): ");
+					System.out.print("Digite a espécie do pet (Felino ou Canino): ");
 					String novoEspecie = leia.nextLine();
 					cachorro.setEspecie(novoEspecie);
 					
-					System.out.print("\nDigite o Tipo de Pelo: ");
+					System.out.print("Digite o Tipo de Pelo: ");
 					String novoPelo = leia.nextLine();
 					cachorro.setEspecie(novoPelo);
 					
-					System.out.println("\n  -------------------------------*");
-					System.out.println("     Cadastro atualizado com sucesso    ");
-					System.out.println("  -------------------------------*");
+					System.out.println("\n  *--------*--------*--------*-------*");
+					System.out.println("           Cadastro Atualizado");
+					System.out.println("  *--------*--------*--------*-------*");
 					break;
 				}
 			}
@@ -925,9 +937,9 @@ public class MetodosMenu implements MenuRepositorio {
 	public void removerCadastro() {
 	    listarPets();
 	    leia.skip("\\R?");
-	    System.out.println("\n  -------------------------------*");
-	    System.out.println("           Removendo o Cadastro     ");
-	    System.out.println("  -------------------------------*");
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("            Removendo Cadastro");
+		System.out.println("  *--------*--------*--------*-------*");
 	    System.out.print("Digite o nome do pet que deseja remover o cadastro: ");
 	    String nomePet = leia.nextLine();
 
@@ -939,9 +951,10 @@ public class MetodosMenu implements MenuRepositorio {
 	        if (gato.getNomeAnimal().equalsIgnoreCase(nomePet)) {
 	            iteratorGato.remove();
 	            removido = true;
-	            System.out.println("\n  -------------------------------*");
-	            System.out.println("      Cadastro removido com sucesso    ");
-	            System.out.println("  -------------------------------*");
+				System.out.println("\n  *--------*--------*--------*-------*");
+				System.out.println("             Cadastro Removido");
+				System.out.println("  *--------*--------*--------*-------*");
+				zerarVariaveis();
 	            break;
 	        }
 	    }
@@ -953,18 +966,19 @@ public class MetodosMenu implements MenuRepositorio {
 	            if (cachorro.getNomeAnimal().equalsIgnoreCase(nomePet)) {
 	                iteratorCachorro.remove();
 	                removido = true;
-	                System.out.println("\n  -------------------------------*");
-	                System.out.println("      Cadastro removido com sucesso    ");
-	                System.out.println("  -------------------------------*");
+					System.out.println("\n  *--------*--------*--------*-------*");
+					System.out.println("             Cadastro Removido");
+					System.out.println("  *--------*--------*--------*-------*");
+					zerarVariaveis();
 	                break;
 	            }
 	        }
 	    }
 
 	    if (!removido) {
-	        System.out.println("\n  -------------------------------*");
-	        System.out.println("            Pet não encontrado   ");
-	        System.out.println("  -------------------------------*");
+			System.out.println("\n  *--------*--------*--------*-------*");
+			System.out.println("            Pet não encontrado");
+			System.out.println("  *--------*--------*--------*-------*");
 	    }
 	}
 }

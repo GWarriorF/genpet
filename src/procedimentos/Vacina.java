@@ -62,9 +62,9 @@ public class Vacina
 	public static ArrayList<String> getVacinaGato() 
 	{
 		VacinaGato = new ArrayList<>();
-		VacinaGato.add("V5: Protege contra panleucopenia, calicivirose e rinotraqueíte + Leucemia Felina - FeLV.");
-		VacinaGato.add("V4: Protege contra panleucopenia, calicivirose, rinotraqueíte e clamidiose.");
-		VacinaGato.add("V3: Protege contra panleucopenia, calicivirose e rinotraqueíte.");
+		VacinaGato.add("V5: Protege contra panleucopenia, \ncalicivirose e rinotraqueíte + Leucemia \nFelina - FeLV.");
+		VacinaGato.add("V4: Protege contra panleucopenia, \ncalicivirose, rinotraqueíte e clamidiose.");
+		VacinaGato.add("V3: Protege contra panleucopenia, \ncalicivirose e rinotraqueíte.");
 		VacinaGato.add("Antirrábica: Protege contra a raiva.");
 		return VacinaGato;
 	}
