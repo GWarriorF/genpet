@@ -29,7 +29,7 @@ public class MetodosMenu implements MenuRepositorio {
 	// Listas para guardar os Objetos
 	ArrayList<CadastroAnimalCachorro> listaCadastroCachorro = new ArrayList<CadastroAnimalCachorro>();
 	ArrayList<CadastroAnimalGato> listaCadastroGato = new ArrayList<CadastroAnimalGato>();
-	ArrayList<AgendamentoModelo> agendamentos = new ArrayList<AgendamentoModelo>();
+	ArrayList<AgendamentoModelo> procedimentos = new ArrayList<AgendamentoModelo>();
 	
 	// Cadastro Animal Geral
 	@Override
@@ -515,7 +515,6 @@ public class MetodosMenu implements MenuRepositorio {
 		}
 	}
 		
-	
 	//Tosa Gato Rita
 	@Override
 	public void tosaGato() {
@@ -668,6 +667,7 @@ public class MetodosMenu implements MenuRepositorio {
 		zerarVariaveis();
 	}
 	
+	//Zerar Variaveis 
 	public void zerarVariaveis() 
 	{
 		valorTotal = 0.0f;
@@ -685,7 +685,6 @@ public class MetodosMenu implements MenuRepositorio {
 		peso = 0.0f;
 	}
 	
-
 	//Confere se o cadastro foi finalizado ou não
 	public void cadastroEmAndamento()
 	{
@@ -697,7 +696,6 @@ public class MetodosMenu implements MenuRepositorio {
 		}
 		
 	}
-	
 	
 	//Busca um Animal Felino dentro da lista de cadastro
 	public void buscarAnimalGato() 
@@ -739,7 +737,6 @@ public class MetodosMenu implements MenuRepositorio {
 			}
 		}
 	}
-	//Busca um Animal Canina dentro da lista de cadastro
 	public void buscarAnimalCachorro() 
 	{
 		leia.skip("\\R?");
@@ -805,128 +802,6 @@ public class MetodosMenu implements MenuRepositorio {
 		}
 	}
 	
-
-	//Atualizar Cadastro
-	/*public void atualizarCadastro() {
-		listarPets();
-		leia.skip("\\R?");
-		System.out.println("\n  *--------*--------*--------*-------*");
-		System.out.println("           Atualizando Cadastro");
-		System.out.println("  *--------*--------*--------*-------*");
-		System.out.print("Digite o nome do pet que deseja atualizar o cadastro: ");
-		String nomePet = leia.nextLine();
-		
-		boolean encontrado = false;
-
-		for (CadastroAnimalGato felino : listaCadastroGato) {
-			if (felino.getNomeAnimal().equalsIgnoreCase(nomePet)) {
-				
-				encontrado = true;
-				System.out.print("Digite o novo nome do tutor: ");
-				String novoNomeTutor = leia.nextLine();
-				felino.setNomeDono(novoNomeTutor);
-				
-				System.out.print("Digite o novo CPF: ");
-				String novoCPF = leia.nextLine();
-				felino.setCpf(novoCPF);
-				
-				System.out.print("Digite o endereço: ");
-				String novoEndereco = leia.nextLine();
-				felino.setEndereco(novoEndereco);
-				
-				System.out.print("Digite o nome atualizado do pet: ");
-				String novoNomePet = leia.nextLine();
-				felino.setNomeAnimal(novoNomePet);
-				
-				System.out.print("Digite uma nova cor: ");
-				String novoCor = leia.nextLine();
-				felino.setCor(novoCor);
-				
-				System.out.print("Digite um novo sexo do pet: ");
-				String novoSexo = leia.nextLine();
-				felino.setSexo(novoSexo);
-				
-				System.out.print("Digite uma nova idade do pet: ");
-				String novoIdade = leia.nextLine();
-				felino.setIdade(novoIdade);
-				
-				System.out.print("Digite um novo peso do pet: ");
-				float novoPeso = leia.nextFloat();
-				felino.setPeso(novoPeso);
-				
-				leia.skip("\\R?");
-				
-				System.out.print("Digite a espécie do pet (Felino ou Canino): ");
-				String novoEspecie = leia.nextLine();
-				felino.setEspecie(novoEspecie);
-				
-				System.out.print("Digite o Tipo de Pelo: ");
-				String novoPelo = leia.nextLine();
-				felino.setEspecie(novoPelo);
-				
-				System.out.println("\n  *--------*--------*--------*-------*");
-				System.out.println("           Cadastro Atualizado");
-				System.out.println("  *--------*--------*--------*-------*");
-				break;
-			}
-		}
-
-		if (encontrado == false) {
-			for (CadastroAnimalCachorro cachorro : listaCadastroCachorro) {
-				if (cachorro.getNomeAnimal().equalsIgnoreCase(nomePet)) {
-					System.out.print("Digite o nome atualizado do tutor: ");
-					String novoNomeTutor = leia.nextLine();
-					cachorro.setNomeDono(novoNomeTutor);
-					
-					System.out.print("Digite o novo CPF: ");
-					String novoCPF = leia.nextLine();
-					cachorro.setCpf(novoCPF);
-					
-					System.out.print("Digite o endereço atualizado: ");
-					String novoEndereco = leia.nextLine();
-					cachorro.setEndereco(novoEndereco);
-					
-					System.out.print("Digite o nome atualizado do pet: ");
-					String novoNomePet = leia.nextLine();
-					cachorro.setNomeAnimal(novoNomePet);
-					
-					System.out.print("Digite uma nova cor: ");
-					String novoCor = leia.nextLine();
-					cachorro.setCor(novoCor);
-					
-					System.out.print("Digite um novo sexo do pet: ");
-					String novoSexo = leia.nextLine();
-					cachorro.setSexo(novoSexo);
-					
-					System.out.print("Digite uma nova idade do pet: ");
-					String novoIdade = leia.nextLine();
-					cachorro.setIdade(novoIdade);
-					
-					System.out.print("Digite um novo peso do pet: ");
-					float novoPeso = leia.nextFloat();
-					cachorro.setPeso(novoPeso);
-					
-					System.out.print("Digite a espécie do pet (Felino ou Canino): ");
-					String novoEspecie = leia.nextLine();
-					cachorro.setEspecie(novoEspecie);
-					
-					System.out.print("Digite o Tipo de Pelo: ");
-					String novoPelo = leia.nextLine();
-					cachorro.setEspecie(novoPelo);
-					
-					System.out.println("\n  *--------*--------*--------*-------*");
-					System.out.println("           Cadastro Atualizado");
-					System.out.println("  *--------*--------*--------*-------*");
-					break;
-				}
-			}
-		}
-
-		if (encontrado == false) {
-			System.out.println("Pet não encontrado.");
-		}
-	}*/
-	
 	//Remover Cadastro
 	@Override
 	public void removerCadastro() {
@@ -954,11 +829,14 @@ public class MetodosMenu implements MenuRepositorio {
 	        }
 	    }
 
-	    if (!removido) {
+	    if (!removido) 
+	    {
 	        Iterator<CadastroAnimalCachorro> iteratorCachorro = listaCadastroCachorro.iterator();
-	        while (iteratorCachorro.hasNext()) {
+	        while (iteratorCachorro.hasNext()) 
+	        {
 	            CadastroAnimalCachorro cachorro = iteratorCachorro.next();
-	            if (cachorro.getNomeAnimal().equalsIgnoreCase(nomePet)) {
+	            if (cachorro.getNomeAnimal().equalsIgnoreCase(nomePet)) 
+	            {
 	                iteratorCachorro.remove();
 	                removido = true;
 					System.out.println("\n  *--------*--------*--------*-------*");
@@ -977,6 +855,62 @@ public class MetodosMenu implements MenuRepositorio {
 	    }
 	}
 	
+	//Atualizar cadastro
+	@Override
+	public void atualizarCadastro() 
+	{
+	    listarPets();
+	    leia.skip("\\R?");
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("           Atualizando Cadastro");
+		System.out.println("  *--------*--------*--------*-------*");
+	    System.out.print("Digite o nome do pet que deseja atualizar: ");
+	    String nomePet = leia.nextLine();
+
+	    boolean removido = false;
+	    
+	    Iterator<CadastroAnimalGato> iteratorGato = listaCadastroGato.iterator();
+	    while (iteratorGato.hasNext()) 
+	    {
+	        CadastroAnimalGato gato = iteratorGato.next();
+	        if (gato.getNomeAnimal().equalsIgnoreCase(nomePet)) 
+	        {
+	            iteratorGato.remove();
+	            removido = true;	
+	            zerarVariaveis();
+	            cadastrar();
+	            cadastrarGato();
+	            cadastrarCachorro();
+	            break;
+	        }
+	    }
+	    if (!removido) 
+	    {
+	        Iterator<CadastroAnimalCachorro> iteratorCachorro = listaCadastroCachorro.iterator();
+	        while (iteratorCachorro.hasNext())
+	        {
+	            CadastroAnimalCachorro cachorro = iteratorCachorro.next();
+	            if (cachorro.getNomeAnimal().equalsIgnoreCase(nomePet)) 
+	            {
+	                iteratorCachorro.remove();
+	                removido = true;
+					zerarVariaveis();
+					cadastrar();
+		            cadastrarGato();
+					cadastrarCachorro();
+	                break;
+	            }
+	        }
+	    }
+	    if (!removido) 
+	    {
+	 			System.out.println("\n  *--------*--------*--------*-------*");
+	 			System.out.println("            Pet não encontrado");
+	 			System.out.println("  *--------*--------*--------*-------*");
+	 	}
+	}
+	
+	//Sair Expediente
 	public boolean sairExpediente()
 	{
 		if(valorTotal != 0.0f || nomeTutor != null) 
@@ -987,12 +921,15 @@ public class MetodosMenu implements MenuRepositorio {
 		return false;
 	}
 	
+	//Mostra Cadastro Pendente 
 	public void mostraCadastroPendenteSaida() 
 	{
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("    Finalização de cadastro pendente ");
 		System.out.println("  *--------*--------*--------*-------*");
 	}
+	
+	//Mostra Valor total do dia
 	public void mostraSaida() 
 	{
 		System.out.println("\n  *--------*--------*--------*-------*");
@@ -1011,232 +948,6 @@ public class MetodosMenu implements MenuRepositorio {
 		System.out.println("|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|");
 	}
 	
-	
-	//Atualizar Gato
-	@Override
-	public void atualizarCadastro() {
-		listarPets();
-		leia.skip("\\R?");
-		System.out.println("\n  *--------*--------*--------*-------*");
-		System.out.println("           Atualizando Cadastro");
-		System.out.println("  *--------*--------*--------*-------*");
-		System.out.print("Digite o nome do pet que deseja atualizar o cadastro: ");
-		String nomePet = leia.nextLine();
-		
-		for (CadastroAnimalGato felino : listaCadastroGato) 
-		{
-			if (felino.getNomeAnimal().equalsIgnoreCase(nomePet)) 
-			{
-				CadastroAnimalGato fichaFelino = felino;
 
-				System.out.println("\n  *--------*--------*--------*-------*");
-				System.out.println("      Opções para serem atualizadas");
-				System.out.println("  *--------*--------*--------*-------*");
-				System.out.println("1 - Alterar nome do tutor");
-				System.out.println("2 - Alterar CPF");
-				System.out.println("3 - Alterar endereço");
-				System.out.println("4 - Alterar nome do pet");
-				System.out.println("5 - Alterar cor");
-				System.out.println("6 - Alterar sexo");
-				System.out.println("7 - Alterar idade");
-				System.out.println("8 - Alterar peso");
-				System.out.println("9 - Alterar espécie");
-				System.out.println("10 - Sair");
-
-				boolean sair = false;
-				while (!sair) 
-				{
-					System.out.print("\nDigite o número da opção desejada: ");
-					int opcao = leia.nextInt();
-					leia.nextLine(); // Limpa o buffer do scanner
-	       
-					switch (opcao) 
-					{
-	            case 1:
-	                System.out.print("\nDigite o nome atualizado do tutor: ");
-	                String novoNomeTutor = leia.nextLine();
-	                fichaFelino.setNomeDono(novoNomeTutor);
-	                System.out.println("Nome do tutor atualizado com sucesso.");
-	                break;
-	            case 2:
-	                System.out.print("\nDigite o novo CPF: ");
-	                String novoCPF = leia.nextLine();
-	                fichaFelino.setCpf(novoCPF);
-	                System.out.println("CPF atualizado com sucesso.");
-	                break;
-	            case 3:
-	                System.out.print("\nDigite o endereço atualizado: ");
-	                String novoEndereco = leia.nextLine();
-	                fichaFelino.setEndereco(novoEndereco);
-	                System.out.println("Endereço atualizado com sucesso.");
-	                break;
-	            case 4:
-	                System.out.print("\nDigite o nome atualizado do pet: ");
-	                String novoNomePet = leia.nextLine();
-	                fichaFelino.setNomeAnimal(novoNomePet);
-	                System.out.println("Nome do pet atualizado com sucesso.");
-	                break;
-	            case 5:
-	                System.out.print("\nDigite uma nova cor: ");
-	                String novoCor = leia.nextLine();
-	                fichaFelino.setCor(novoCor);
-	                System.out.println("Cor atualizada com sucesso.");
-	                break;
-	            case 6:
-	                System.out.print("\nDigite um novo sexo do pet: ");
-	                String novoSexo = leia.nextLine();
-	                fichaFelino.setSexo(novoSexo);
-	                System.out.println("Sexo atualizado com sucesso.");
-	                break;
-	            case 7:
-	                System.out.print("\nDigite uma nova idade do pet: ");
-	                String novoIdade = leia.nextLine();
-	                fichaFelino.setIdade(novoIdade);
-	                System.out.println("Idade atualizada com sucesso.");
-	                break;
-	            case 8:
-	                System.out.print("\nDigite um novo peso do pet: ");
-	                float novoPeso = leia.nextFloat();
-	                fichaFelino.setPeso(novoPeso);
-	                System.out.println("Peso atualizado com sucesso.");
-	                break;
-	            case 9:
-	                System.out.print("\nDigite a nova espécie [Felino] ou [Canina]: ");
-	                String novaEspecie = leia.nextLine();
-	                if(novaEspecie.equalsIgnoreCase("Felino" )|| 
-	        		especie.equalsIgnoreCase("Felina")) 
-	                {
-	                pelo = null;
-	                raca = null;
-	                cadastrarGato();
-					System.out.println("\n  *--------*--------*--------*-------*");
-					System.out.println("           Cadastro Atualizado");
-					System.out.println("  *--------*--------*--------*-------*");
-	                } else 
-	                {
-						System.out.println("\n  *--------*--------*--------*-------*");
-						System.out.println("             Opção inválida");
-						System.out.println("  *--------*--------*--------*-------*");
-	                }
-	                leia.nextLine(); // Limpar buffer
-	                break;
-	            case 10: 
-	            	sair = true;
-	            default:
-	                System.out.println("Opção inválida. Digite um número de 1 a 10.");
-	                break;
-	        	
-					}
-				}
-			}
-		}
-			for (CadastroAnimalCachorro canina : listaCadastroCachorro) {
-				if (canina.getNomeAnimal().equalsIgnoreCase(nomePet)) {
-					CadastroAnimalCachorro fichaCanina = canina;
-
-					System.out.println("\n  *--------*--------*--------*-------*");
-					System.out.println("      Opções para serem atualizadas");
-					System.out.println("  *--------*--------*--------*-------*");
-					System.out.println("1 - Alterar nome do tutor");
-					System.out.println("2 - Alterar CPF");
-					System.out.println("3 - Alterar endereço");
-					System.out.println("4 - Alterar nome do pet");
-					System.out.println("5 - Alterar cor");
-					System.out.println("6 - Alterar sexo");
-					System.out.println("7 - Alterar idade");
-					System.out.println("8 - Alterar peso");
-					System.out.println("9 - Alterar espécie");
-					System.out.println("10 - Sair");
-
-					boolean sair = false;
-					while (!sair) {
-						System.out.print("\nDigite o número da opção desejada: ");
-						int opcao = leia.nextInt();
-						leia.nextLine(); // Limpa o buffer do scanner
-		       
-						switch (opcao) {
-		            case 1:
-		                System.out.print("\nDigite o nome atualizado do tutor: ");
-		                String novoNomeTutor = leia.nextLine();
-		                fichaCanina.setNomeDono(novoNomeTutor);
-		                System.out.println("Nome do tutor atualizado com sucesso.");
-		                break;
-		            case 2:
-		                System.out.print("\nDigite o novo CPF: ");
-		                String novoCPF = leia.nextLine();
-		                fichaCanina.setCpf(novoCPF);
-		                System.out.println("CPF atualizado com sucesso.");
-		                break;
-		            case 3:
-		                System.out.print("\nDigite o endereço atualizado: ");
-		                String novoEndereco = leia.nextLine();
-		                fichaCanina.setEndereco(novoEndereco);
-		                System.out.println("Endereço atualizado com sucesso.");
-		                break;
-		            case 4:
-		                System.out.print("\nDigite o nome atualizado do pet: ");
-		                String novoNomePet = leia.nextLine();
-		                fichaCanina.setNomeAnimal(novoNomePet);
-		                System.out.println("Nome do pet atualizado com sucesso.");
-		                break;
-		            case 5:
-		                System.out.print("\nDigite uma nova cor: ");
-		                String novoCor = leia.nextLine();
-		                fichaCanina.setCor(novoCor);
-		                System.out.println("Cor atualizada com sucesso.");
-		                break;
-		            case 6:
-		                System.out.print("\nDigite um novo sexo do pet: ");
-		                String novoSexo = leia.nextLine();
-		                fichaCanina.setSexo(novoSexo);
-		                System.out.println("Sexo atualizado com sucesso.");
-		                break;
-		            case 7:
-		                System.out.print("\nDigite uma nova idade do pet: ");
-		                String novoIdade = leia.nextLine();
-		                fichaCanina.setIdade(novoIdade);
-		                System.out.println("Idade atualizada com sucesso.");
-		                break;
-		            case 8:
-		                System.out.print("\nDigite um novo peso do pet: ");
-		                float novoPeso = leia.nextFloat();
-		                fichaCanina.setPeso(novoPeso);
-		                System.out.println("Peso atualizado com sucesso.");
-		                break;
-		            case 9:
-		                System.out.print("\nDigite a nova espécie [Felino] ou [Canina]: ");
-		                String novaEspecie = leia.nextLine();
-		                if(novaEspecie.equalsIgnoreCase("Canino" )|| 
-		        		especie.equalsIgnoreCase("Canina")) 
-		                {
-		                pelo = null;
-		                raca = null;
-		                cadastrarGato();
-						System.out.println("\n  *--------*--------*--------*-------*");
-						System.out.println("           Cadastro Atualizado");
-						System.out.println("  *--------*--------*--------*-------*");
-		                } else 
-		                {
-							System.out.println("\n  *--------*--------*--------*-------*");
-							System.out.println("             Opção inválida");
-							System.out.println("  *--------*--------*--------*-------*");
-		                }
-		                leia.nextLine(); // Limpar buffer
-		                break;
-		            case 10: 
-		            	sair = true;
-		            default:
-						System.out.println("\n  *--------*--------*--------*-------*");
-						System.out.println("             Opção inválida"
-								+          "        Digite uma opção de 1 a 10      ");
-						System.out.println("  *--------*--------*--------*-------*");
-		                break;
-		        	
-						}
-					}
-				}
-			}
-		}
-	
 	
 }
