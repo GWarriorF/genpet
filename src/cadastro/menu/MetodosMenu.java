@@ -981,4 +981,38 @@ public class MetodosMenu implements MenuRepositorio {
 			System.out.println("  *--------*--------*--------*-------*");
 	    }
 	}
+	
+	public boolean sairExpediente()
+	{
+		if(valorTotal != 0.0f || nomeTutor != null) 
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public void mostraCadastroPendenteSaida() 
+	{
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("    Finalização de cadastro pendente ");
+		System.out.println("  *--------*--------*--------*-------*");
+	}
+	public void mostraSaida() 
+	{
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("          Expediente Finalizado      ");
+		System.out.println("  *--------*--------*--------*-------*");
+		System.out.println("         Valor Total do dia: " + valorTotalDia );
+		System.out.println("\n      /^--^\\     /^--^\\     /^--^\\");
+		System.out.println("      \\____/     \\____/     \\____/");
+		System.out.println("      /    \\     /    \\     /    \\");
+		System.out.println("     |      |   |      |   |      |");
+		System.out.println("     \\__  __/   \\__  __/   \\__  __/");
+		System.out.println("|^|^|^|^\\ \\^|^|^|^/ /^|^|^|^|^\\ \\^|^|^|^|");
+		System.out.println("| | | | |\\ \\| | |/ /| | | | | |\\ \\| | | |");
+		System.out.println("#########/ /#####\\ \\###########/ /#######");
+		System.out.println(" | | | | \\/| | | |\\/| | | | | |\\/ | | | |");
+		System.out.println("|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|");
+	}
 }

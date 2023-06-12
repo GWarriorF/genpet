@@ -56,10 +56,7 @@ public class MenuPet {
 					"*    11 - " + Cores.TEXT_YELLOW_BRIGHT + "Visualizar Cadastro      " + Cores.TEXT_RESET + "    *");
 			System.out.println(
 					"*    12 - " + Cores.TEXT_YELLOW_BRIGHT + "Finalizar Cadastro       " + Cores.TEXT_RESET + "    *");
-
-			
-			
-			System.out.println("*    12 - " + Cores.TEXT_RED_BOLD_BRIGHT + "Sair" + Cores.TEXT_RESET
+			System.out.println("*    13 - " + Cores.TEXT_RED_BOLD_BRIGHT + "Sair" + Cores.TEXT_RESET
 					+ "                         *");
 			
 			System.out.println("|                                      |");
@@ -186,21 +183,15 @@ public class MenuPet {
 				KeyPress();
 				break;
 			case 13:
-				System.out.println("\n  *--------*--------*--------*-------*");
-				System.out.println("           ExpedienteFinalizado      ");
-				System.out.println("  *--------*--------*--------*-------*");
-				
-				System.out.println("\n\n      /^--^\\     /^--^\\     /^--^\\");
-				System.out.println("      \\____/     \\____/     \\____/");
-				System.out.println("      /    \\     /    \\     /    \\");
-				System.out.println("     |      |   |      |   |      |");
-				System.out.println("     \\__  __/   \\__  __/   \\__  __/");
-				System.out.println("|^|^|^|^\\ \\^|^|^|^/ /^|^|^|^|^\\ \\^|^|^|^|");
-				System.out.println("| | | | |\\ \\| | |/ /| | | | | |\\ \\| | | |");
-				System.out.println("#########/ /#####\\ \\###########/ /#######");
-				System.out.println(" | | | | \\/| | | |\\/| | | | | |\\/ | | | |");
-				System.out.println("|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|");
-				exibir = false;
+				if(ficha.sairExpediente()) 
+				{
+					ficha.mostraCadastroPendenteSaida();
+				}else 
+				{
+					ficha.mostraSaida();
+					exibir = false;
+				}
+				KeyPress();
 				break;
 			default:
 				System.out.println("\n  *--------*--------*--------*-------*");
