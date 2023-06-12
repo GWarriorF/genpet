@@ -697,6 +697,7 @@ public class MetodosMenu implements MenuRepositorio {
 	//Busca um Animal Felino dentro da lista de cadastro
 	public void buscarAnimalGato() 
 	{
+		leia.skip("\\R?");
 		System.out.print("Digite o nome do pet: ");
 		lerString = leia.nextLine();
 		
@@ -736,6 +737,7 @@ public class MetodosMenu implements MenuRepositorio {
 	//Busca um Animal Canina dentro da lista de cadastro
 	public void buscarAnimalCachorro() 
 	{
+		leia.skip("\\R?");
 		System.out.print("Digite o nome do pet: ");
 		lerString = leia.nextLine();
 		
@@ -844,6 +846,8 @@ public class MetodosMenu implements MenuRepositorio {
 				System.out.print("\nDigite um novo peso do pet: ");
 				float novoPeso = leia.nextFloat();
 				felino.setPeso(novoPeso);
+				
+				leia.skip("\\R?");
 				
 				System.out.print("\nDigite a espécie do pet (Felino ou Canino): ");
 				String novoEspecie = leia.nextLine();
