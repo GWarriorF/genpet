@@ -1,22 +1,27 @@
 package cadastro.modelo;
 
+import java.util.ArrayList;
+
 public class CadastroAnimal extends CadastroDono
 {
 	private String nomeAnimal;
 	private String cor;
 	private String sexo;
 	private String idade;
-	private float peso;
+	private Double peso;
+	private ArrayList<String> procedimentos = new ArrayList<String>();
+	private ArrayList<Double> valores = new ArrayList<Double>();
 	
 	public CadastroAnimal(String nomeDono, String endereco, String cpf, String especie, String nomeAnimal, String cor,
-			String sexo, String idade, float peso) 
-	{
+		String sexo, String idade, Double peso, ArrayList<String> procedimentos, ArrayList<Double> valores) {
 		super(nomeDono, endereco, cpf, especie);
 		this.nomeAnimal = nomeAnimal;
 		this.cor = cor;
 		this.sexo = sexo;
 		this.idade = idade;
 		this.peso = peso;
+		this.procedimentos = procedimentos;
+		this.valores = valores;
 	}
 
 	public String getNomeAnimal() {
@@ -51,16 +56,32 @@ public class CadastroAnimal extends CadastroDono
 		this.idade = idade;
 	}
 
-	public float getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
 
-	public void setPeso(float peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
-	
-	public void visualizarAnimal() {
-		super.visualizarDono();
+
+	public ArrayList<String> getProcedimentos() {
+		return procedimentos;
 	}
 
+	public void setProcedimentos(ArrayList<String> procedimentos) {
+		this.procedimentos = procedimentos;
+	}
+
+	public ArrayList<Double> getValor() {
+		return valores;
+	}
+
+	public void setValor(ArrayList<Double> valores) {
+		this.valores = valores;
+	}
+	
+	
+
+
+	
 }

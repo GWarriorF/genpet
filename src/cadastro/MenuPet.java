@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import cadastro.menu.MetodosMenu;
+import cadastro.menu.MenuMetodos;
 import util.Cores;
 
 public class MenuPet {
@@ -14,13 +14,7 @@ public class MenuPet {
 		boolean exibir = true;
 		int exibicao = 0;
 		Scanner ler = new Scanner(System.in);
-		MetodosMenu ficha = new MetodosMenu();
-
-		/*
-		 * System.out.println(Cores.TEXT_WHITE_BRIGHT +
-		 * "Bem Vindes a GenPet! \nPressione " + Cores.TEXT_GREEN_BRIGHT + "\"ENTER\"" +
-		 * Cores.TEXT_WHITE_BRIGHT + " para começar!\n"); ler.skip("\\R");
-		 */
+		MenuMetodos ficha = new MenuMetodos();
 
 		while (exibir) {
 			System.out.println("\n   *--------*--------*-------*-----*");
@@ -43,15 +37,15 @@ public class MenuPet {
 			System.out.println(
 					"*    5 - " + Cores.TEXT_YELLOW_BRIGHT + "Remover Cadastro" + Cores.TEXT_RESET + "              *");
 			System.out.println(
-					"*    6 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Consulta" + Cores.TEXT_RESET + "              *");
+					"*    6 - " + Cores.TEXT_YELLOW_BRIGHT + "Consulta        " + Cores.TEXT_RESET + "              *");
 			System.out.println(
-					"*    7 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Vacinas" + Cores.TEXT_RESET + "               *");
+					"*    7 - " + Cores.TEXT_YELLOW_BRIGHT + "Vacinas        " + Cores.TEXT_RESET + "               *");
 			System.out.println(
-					"*    8 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Banho       " + Cores.TEXT_RESET + "          *");
+					"*    8 - " + Cores.TEXT_YELLOW_BRIGHT + "Banho               " + Cores.TEXT_RESET + "          *");
 			System.out.println(
-					"*    9 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Tosa        " + Cores.TEXT_RESET + "          *");
+					"*    9 - " + Cores.TEXT_YELLOW_BRIGHT + "Tosa                " + Cores.TEXT_RESET + "          *");
 			System.out.println(
-					"*    10 - " + Cores.TEXT_YELLOW_BRIGHT + "Agendar Castração" + Cores.TEXT_RESET + "             *");
+					"*    10 - " + Cores.TEXT_YELLOW_BRIGHT + "Castração        " + Cores.TEXT_RESET + "            *");
 			System.out.println(
 					"*    11 - " + Cores.TEXT_YELLOW_BRIGHT + "Visualizar Cadastro      " + Cores.TEXT_RESET + "    *");
 			System.out.println(
@@ -70,19 +64,9 @@ public class MenuPet {
 				ler.nextLine(); // Limpa o buffer do scanner após o erro
 				continue; // Volta ao início do loop
 			}
-
-			/*if (exibicao == 10) {
-				System.out.println("\nObrigado pela confiança. Volte sempre!");
-				ler.close();
-				System.exit(0);
-			}*/
-
 			switch (exibicao) { 
 			case 1:
-				ficha.cadastroEmAndamento();
-				ficha.cadastrar();
-				ficha.cadastrarGato();
-				ficha.cadastrarCachorro();
+				ficha.cadastrarPets();
 				KeyPress(); 
 				break;
 			case 2:
@@ -91,12 +75,6 @@ public class MenuPet {
 				break;
 			case 3:
 					ficha.buscarAnimal();
-					/*}catch(NullPointerException e)
-					{
-						System.out.println("\n  *--------*--------*--------*-------*");
-						System.out.println("            Cadastro pendente         ");
-						System.out.println("  *--------*--------*--------*-------*");
-					}*/
 					KeyPress();
 					break;
 			case 4:
@@ -156,8 +134,8 @@ public class MenuPet {
 					break;
 			case 10:
 				try {
-				ficha.printCadastroCachorro();
-				ficha.printCadastroGato();
+				ficha.castrarGato();
+				ficha.castrarCachorro();
 				}catch(NullPointerException e)
 				{
 					System.out.println("\n  *--------*--------*--------*-------*");
@@ -179,7 +157,14 @@ public class MenuPet {
 					KeyPress();
 					break;
 			case 12:
+				try {
 				ficha.saidaAnimal();
+				}catch(NullPointerException e)
+				{
+					System.out.println("\n  *--------*--------*--------*-------*");
+					System.out.println("            Cadastro pendente         ");
+					System.out.println("  *--------*--------*--------*-------*");					
+				}
 				KeyPress();
 				break;
 			case 13:
@@ -201,6 +186,7 @@ public class MenuPet {
 				break;
 			}
 		}
+		ler.close();
 	}
 	
 	public static void KeyPress() 

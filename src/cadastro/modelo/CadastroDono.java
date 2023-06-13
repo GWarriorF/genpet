@@ -5,7 +5,8 @@ public abstract class CadastroDono {
 	private String nomeDono, endereco, cpf, especie;
 	
 
-	public CadastroDono(String nomeDono, String endereco, String cpf, String especie) {
+	public CadastroDono(String nomeDono, String endereco, String cpf, String especie) 
+	{
 		this.nomeDono = nomeDono;
 		this.endereco = endereco;
 		this.cpf = cpf;

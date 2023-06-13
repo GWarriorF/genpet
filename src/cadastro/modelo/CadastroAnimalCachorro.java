@@ -11,10 +11,12 @@ public class CadastroAnimalCachorro extends CadastroAnimal
 	private static ArrayList <String> racaCachorros;
 	private static ArrayList <String> tipoPeloCachorros;
 	
+
+	
 	public CadastroAnimalCachorro(String nomeDono, String endereco, String cpf, String especie, String nomeAnimal,
-					String cor, String sexo, String idade, float peso, String tipoPeloCachorro, String racaCachorro) 
-	{
-		super(nomeDono, endereco, cpf, especie, nomeAnimal, cor, sexo, idade, peso);
+			String cor, String sexo, String idade, Double peso, ArrayList<String> procedimentos,
+			ArrayList<Double> valores, String tipoPeloCachorro, String racaCachorro) {
+		super(nomeDono, endereco, cpf, especie, nomeAnimal, cor, sexo, idade, peso, procedimentos, valores);
 		this.tipoPeloCachorro = tipoPeloCachorro;
 		this.racaCachorro = racaCachorro;
 	}
