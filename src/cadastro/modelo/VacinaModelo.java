@@ -1,9 +1,9 @@
-package procedimentos;
+package cadastro.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vacina 
+public class VacinaModelo 
 {
 	
 	String vacinaG;
@@ -12,7 +12,7 @@ public class Vacina
 	private static ArrayList<String> VacinaGato;
 
 
-	public Vacina(String vacinaG, String vacinaC) 
+	public VacinaModelo(String vacinaG, String vacinaC) 
 	{
 		this.vacinaG = vacinaG;
 		this.vacinaC = vacinaC;

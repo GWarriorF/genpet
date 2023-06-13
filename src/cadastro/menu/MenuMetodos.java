@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 import cadastro.modelo.CadastroAnimalCachorro;
 import cadastro.modelo.CadastroAnimalGato;
-import procedimentos.Vacina;
 import cadastro.modelo.ProcedimentosModelo;
+import cadastro.modelo.VacinaModelo;
 
 public class MenuMetodos implements MenuRepositorio {
 
@@ -525,7 +525,7 @@ public class MenuMetodos implements MenuRepositorio {
 	@Override
 	public void vacinarGato() {
 		int tipoVacina;
-		ArrayList<String> VacinasGato = Vacina.getVacinaGato();
+		ArrayList<String> VacinasGato = VacinaModelo.getVacinaGato();
 		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
 				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			System.out.println("\n  *--------*--------*--------*-------*");
@@ -593,7 +593,7 @@ public class MenuMetodos implements MenuRepositorio {
 	@Override
 	public void vacinarCachorro() {
 		int tipoVacina;
-		ArrayList<String> VacinasCachorro = Vacina.getVacinaCachorro();
+		ArrayList<String> VacinasCachorro = VacinaModelo.getVacinaCachorro();
 
 		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
 				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
@@ -661,7 +661,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("         Valor da tosa Acrescentado     ");
 				System.out.println("  *--------*--------*--------*-------*");
-				procedimentosLista.add("Tosa           ");
+				procedimentosLista.add("Tosa            ");
 				valorLista.add(valor);
 			} else if (pelo.equalsIgnoreCase("Médio")) {
 				valor = 60.0;
@@ -670,7 +670,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("         Valor da tosa Acrescentado     ");
 				System.out.println("  *--------*--------*--------*-------*");
-				procedimentosLista.add("Tosa           ");
+				procedimentosLista.add("Tosa            ");
 				valorLista.add(valor);
 			} else if (pelo.equalsIgnoreCase("Longo")) {
 				valor = 75.0;
@@ -679,7 +679,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("         Valor da tosa Acrescentado     ");
 				System.out.println("  *--------*--------*--------*-------*");
-				procedimentosLista.add("Tosa           ");
+				procedimentosLista.add("Tosa            ");
 				valorLista.add(valor);
 			} else {
 				System.out.println("\n  *--------*--------*--------*-------*");
@@ -702,7 +702,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("        Valor da tosa Acrescentado     ");
 				System.out.println("  *--------*--------*--------*-------*");
-				procedimentosLista.add("Tosa           ");
+				procedimentosLista.add("Tosa            ");
 				valorLista.add(valor);
 			} else if (pelo.equalsIgnoreCase("Médio")) {
 				valor = 180.0;
@@ -711,7 +711,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("        Valor da tosa Acrescentado     ");
 				System.out.println("  *--------*--------*--------*-------*");
-				procedimentosLista.add("Tosa           ");
+				procedimentosLista.add("Tosa            ");
 				valorLista.add(valor);
 			} else if (pelo.equalsIgnoreCase("Longo")) {
 				valor = 270.0;
@@ -720,7 +720,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("        Valor da tosa Acrescentado     ");
 				System.out.println("  *--------*--------*--------*-------*");
-				procedimentosLista.add("Tosa           ");
+				procedimentosLista.add("Tosa            ");
 				valorLista.add(valor);
 			} else if (pelo.equalsIgnoreCase("Pelagem Dupla")) {
 				valor = 130.0;
@@ -729,7 +729,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("        Valor da tosa Acrescentado     ");
 				System.out.println("  *--------*--------*--------*-------*");
-				procedimentosLista.add("Tosa           ");
+				procedimentosLista.add("Tosa            ");
 				valorLista.add(valor);
 			} else if (pelo.equalsIgnoreCase("Encaracolado")) {
 				valor = 150.0;
@@ -738,7 +738,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("        Valor da tosa Acrescentado     ");
 				System.out.println("  *--------*--------*--------*-------*");
-				procedimentosLista.add("Tosa           ");
+				procedimentosLista.add("Tosa            ");
 				valorLista.add(valor);
 			} else {
 				System.out.println("\n  *--------*--------*--------*-------*");
@@ -1435,7 +1435,8 @@ public class MenuMetodos implements MenuRepositorio {
 	}
 
 	// Mostra Cadastro Pendente
-	public void mostraCadastroPendenteSaida() {
+	public void mostraCadastroPendenteSaida() 
+	{
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("    Finalização de cadastro pendente ");
 		System.out.println("  *--------*--------*--------*-------*");
