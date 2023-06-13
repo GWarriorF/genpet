@@ -8,8 +8,8 @@ public class CadastroAnimalCachorro extends CadastroAnimal
 	
 	private String tipoPeloCachorro;
 	private String racaCachorro;
-	private static ArrayList <String> racaCachorros;
-	private static ArrayList <String> tipoPeloCachorros;
+	private static ArrayList <String> racaCachorros = new ArrayList<String>();
+	private static ArrayList <String> tipoPeloCachorros = new ArrayList<String>();
 	
 
 	
@@ -42,7 +42,7 @@ public class CadastroAnimalCachorro extends CadastroAnimal
 	public static ArrayList <String> getRacaCachorros()
 	{ 
 		ArrayList <String> racaCachorros = new ArrayList <String>();
-		racaCachorros.add("SRC (Sem Raça Definida)");
+		racaCachorros.add("SRD (Sem Raça Definida)");
 		racaCachorros.add("Beagle");
 		racaCachorros.add("Rottweiler");
 		racaCachorros.add("Boxer");

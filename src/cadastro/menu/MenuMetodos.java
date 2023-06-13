@@ -5,14 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-
 import cadastro.modelo.CadastroAnimalCachorro;
 import cadastro.modelo.CadastroAnimalGato;
 import procedimentos.Vacina;
 import cadastro.modelo.ProcedimentosModelo;
 
 public class MenuMetodos implements MenuRepositorio {
-	
+
 	// variaveis Uteis
 	Scanner leia = new Scanner(System.in);
 	int indiceCadastro = -1;
@@ -23,21 +22,20 @@ public class MenuMetodos implements MenuRepositorio {
 	String nomeTutor, cpf, endereco, nomeAnimal, cor, sexo, idade, especie, pelo, raca;
 	int lerInteiro, numero;
 	Double peso;
-	
-	//Variaveis agendamento
+
+	// Variaveis agendamento
 	ArrayList<String> procedimentosLista = new ArrayList<String>();
 	ArrayList<Double> valorLista = new ArrayList<Double>();
-	
+
 	// Listas para guardar os Objetos
 	ArrayList<CadastroAnimalCachorro> listaCadastroCachorro = new ArrayList<CadastroAnimalCachorro>();
-	ArrayList<CadastroAnimalGato> listaCadastroGato = new ArrayList<CadastroAnimalGato>(); 
-	ArrayList <ProcedimentosModelo> listaPV = new ArrayList<ProcedimentosModelo>();
-	
+	ArrayList<CadastroAnimalGato> listaCadastroGato = new ArrayList<CadastroAnimalGato>();
+	ArrayList<ProcedimentosModelo> listaPV = new ArrayList<ProcedimentosModelo>();
+
 	// Cadastro Animal Geral
 	@Override
-	public void cadastrar() 
-	{
-		if (nomeTutor == null) {	
+	public void cadastrar() {
+		if (nomeTutor == null) {
 			leia.skip("\\R");
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("              Cadastrar Pet           ");
@@ -75,23 +73,21 @@ public class MenuMetodos implements MenuRepositorio {
 	// Cadastro Animal Gato
 	@Override
 	public void cadastrarGato() {
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") || 
-			especie.replaceAll("\\s", "").equalsIgnoreCase("Felina") && 
-			especie == null) 
-		{
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina") && especie == null) {
 			List<String> racas = CadastroAnimalGato.getRacas();
 			List<String> tipoPelo = CadastroAnimalGato.getTipoPelo();
-			
+
 			System.out.println("\n                 |\\__/,|   (`\\");
 			System.out.println("               _.|o o  |_   ) )");
 			System.out.println("             -(((---(((--------");
-			
+
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("             Tipos de Pelo ");
 			System.out.println("  *--------*--------*--------*-------*");
 
 			for (int indice = 0; indice < tipoPelo.size(); indice++) {
-				System.out.println("            " +(indice + 1) + " - " + tipoPelo.get(indice));
+				System.out.println("            " + (indice + 1) + " - " + tipoPelo.get(indice));
 			}
 
 			System.out.print("\nEscolha o tipo de pelo: ");
@@ -112,20 +108,56 @@ public class MenuMetodos implements MenuRepositorio {
 			lerInteiro = leia.nextInt();
 			raca = racas.get(lerInteiro - 1);
 
-			CadastroAnimalGato animalGato = new CadastroAnimalGato(nomeTutor, endereco, cpf, especie, 
-					nomeAnimal, cor, sexo, idade, peso, procedimentosLista, valorLista, pelo, raca);
+			CadastroAnimalGato animalGato = new CadastroAnimalGato(nomeTutor, endereco, cpf, especie, nomeAnimal, cor,
+					sexo, idade, peso, procedimentosLista, valorLista, pelo, raca);
 
 			listaCadastroGato.add(animalGato);
 			indiceCadastro += 1;
+
 		}
+	}
+
+	// Atualizar Especie
+	public void atualizarEspecieGato() {
+		List<String> racas = CadastroAnimalGato.getRacas();
+		List<String> tipoPelo = CadastroAnimalGato.getTipoPelo();
+		System.out.println("\n                 |\\__/,|   (`\\");
+		System.out.println("               _.|o o  |_   ) )");
+		System.out.println("             -(((---(((--------");
+
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("             Tipos de Pelo ");
+		System.out.println("  *--------*--------*--------*-------*");
+
+		for (int indice = 0; indice < tipoPelo.size(); indice++) {
+			System.out.println("            " + (indice + 1) + " - " + tipoPelo.get(indice));
+		}
+
+		System.out.print("\nEscolha o tipo de pelo: ");
+		lerInteiro = leia.nextInt();
+		pelo = tipoPelo.get(lerInteiro - 1);
+
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("             Tipos de Raças ");
+		System.out.println("  *--------*--------*--------*-------*");
+
+		for (int indice = 0; indice < racas.size(); indice++) {
+			int numero = indice + 1;
+			String raca = racas.get(indice);
+			System.out.println("      " + numero + " - " + raca);
+		}
+
+		System.out.print("\nEscolha o tipo de Raça: ");
+		lerInteiro = leia.nextInt();
+		raca = racas.get(lerInteiro - 1);
+
 	}
 
 	// Cadastro Animal Cachorro
 	@Override
 	public void cadastrarCachorro() {
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
-			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino") && 
-		    pelo == null && valor != 0.0 ) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino") && pelo == null && valor != 0.0) {
 			ArrayList<String> racasCachorro = CadastroAnimalCachorro.getRacaCachorros();
 			ArrayList<String> pelosCachorro = CadastroAnimalCachorro.getTipoPeloCachorros();
 
@@ -140,7 +172,7 @@ public class MenuMetodos implements MenuRepositorio {
 
 			for (int indice = 0; indice < racasCachorro.size(); indice++) {
 				String racaCachorro = racasCachorro.get(indice);
-				System.out.println("       "+(indice + 1) + " - " + racaCachorro);
+				System.out.println("       " + (indice + 1) + " - " + racaCachorro);
 			}
 
 			System.out.print("\nEscolha o tipo de raça: ");
@@ -160,28 +192,65 @@ public class MenuMetodos implements MenuRepositorio {
 			lerInteiro = leia.nextInt();
 			pelo = pelosCachorro.get(lerInteiro - 1);
 
-			CadastroAnimalCachorro animalCachorro = new CadastroAnimalCachorro(nomeTutor, endereco, cpf,
-					especie, nomeAnimal, cor, sexo, idade, peso, procedimentosLista, valorLista, pelo, raca);
+			CadastroAnimalCachorro animalCachorro = new CadastroAnimalCachorro(nomeTutor, endereco, cpf, especie,
+					nomeAnimal, cor, sexo, idade, peso, procedimentosLista, valorLista, pelo, raca);
 
 			listaCadastroCachorro.add(animalCachorro);
 			indiceCadastro += 1;
+
 		}
+	}
+
+	// Atualizar Especie
+	public void atualizarEspecieCachorro() {
+		ArrayList<String> racasCachorro = CadastroAnimalCachorro.getRacaCachorros();
+		ArrayList<String> pelosCachorro = CadastroAnimalCachorro.getTipoPeloCachorros();
+
+		System.out.println("\n                        __");
+		System.out.println("            (\\,--------'()'--o");
+		System.out.println("            (_    ___    /~\"");
+		System.out.println("            (_)_)  (_)_)");
+
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("             Tipos de Raças ");
+		System.out.println("  *--------*--------*--------*-------*");
+
+		for (int indice = 0; indice < racasCachorro.size(); indice++) {
+			String racaCachorro = racasCachorro.get(indice);
+			System.out.println("       " + (indice + 1) + " - " + racaCachorro);
+		}
+
+		System.out.print("\nEscolha o tipo de raça: ");
+		lerInteiro = leia.nextInt();
+		raca = racasCachorro.get(lerInteiro - 1);
+
+		System.out.println("\n  *--------*--------*--------*-------*");
+		System.out.println("             Tipos de Pelo ");
+		System.out.println("  *--------*--------*--------*-------*");
+
+		for (int indice = 0; indice < pelosCachorro.size(); indice++) {
+			String peloCachorro = pelosCachorro.get(indice);
+			System.out.println("            " + (indice + 1) + " - " + peloCachorro);
+		}
+
+		System.out.print("\nEscolha o tipo de pelo: ");
+		lerInteiro = leia.nextInt();
+		pelo = pelosCachorro.get(lerInteiro - 1);
 	}
 
 	// Listar Gato
 	@Override
 	public void listarGato() {
-		
+
 		System.out.println("\n          |\\      _,,,---,,_");
 		System.out.println("    ZZZzz /,`.-'`'    -.  ;-;;,_");
 		System.out.println("         |,4-  ) )-,_. ,\\ (  `'-'");
 		System.out.println("        '---''(_/--'  `-'\\_) ");
-		
+
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("         Lista de Cadastro Gatos       ");
 		System.out.println("  *--------*--------*--------*-------*");
-		for (CadastroAnimalGato listarGato : listaCadastroGato) 
-		{
+		for (CadastroAnimalGato listarGato : listaCadastroGato) {
 			System.out.println("\nNome do Tutor: " + listarGato.getNomeDono());
 			System.out.println("CPF: " + listarGato.getCpf());
 			System.out.println("Endereço: " + listarGato.getEndereco());
@@ -193,20 +262,17 @@ public class MenuMetodos implements MenuRepositorio {
 			System.out.println("Tipo de Pelo: " + listarGato.getPelo());
 			System.out.println("Especie: " + listarGato.getEspecie());
 			System.out.println("Raça: " + listarGato.getRaca());
-			
-			for(ProcedimentosModelo procedimentoDoPet : listaPV) 
-			{
-				if(procedimentoDoPet.getNomeAnimal().equalsIgnoreCase(listarGato.getNomeAnimal()))
-				{
+
+			for (ProcedimentosModelo procedimentoDoPet : listaPV) {
+				if (procedimentoDoPet.getNomeAnimal().equalsIgnoreCase(listarGato.getNomeAnimal())) {
 					ArrayList<String> procedimentos = procedimentoDoPet.getProcedimentos();
 					ArrayList<Double> valores = procedimentoDoPet.getValores();
 					System.out.println("\n  *--------*--------*--------*-------*");
 					System.out.println("               Procedimentos       ");
 					System.out.println("  *--------*--------*--------*-------*");
-					for(int indice = 0; indice < procedimentos.size(); indice++) 
-					{
-						System.out.println((indice + 1) + " - Procedimento: " + 
-					procedimentos.get(indice) + " Valor: " + valores.get(indice));
+					for (int indice = 0; indice < procedimentos.size(); indice++) {
+						System.out.println((indice + 1) + " - Procedimento: " + procedimentos.get(indice) + " Valor: "
+								+ valores.get(indice));
 					}
 				}
 			}
@@ -224,7 +290,7 @@ public class MenuMetodos implements MenuRepositorio {
 		System.out.println("              \\#|_   _'-. /");
 		System.out.println("               |/ \\_( # |\" ");
 		System.out.println("              C/ ,--___/");
-		
+
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("         Lista Cadastro Cachorros     ");
 		System.out.println("  *--------*--------*--------*-------*");
@@ -240,51 +306,45 @@ public class MenuMetodos implements MenuRepositorio {
 			System.out.println("Cor do Pet: " + listarCachorro.getCor());
 			System.out.println("Especie: " + listarCachorro.getEspecie());
 			System.out.println("Raça: " + listarCachorro.getRacaCachorro());
-			for(ProcedimentosModelo procedimentoDoPet : listaPV) 
-			{
-				if(procedimentoDoPet.getNomeAnimal().equalsIgnoreCase(listarCachorro.getNomeAnimal()))
-				{
+			for (ProcedimentosModelo procedimentoDoPet : listaPV) {
+				if (procedimentoDoPet.getNomeAnimal().equalsIgnoreCase(listarCachorro.getNomeAnimal())) {
 					ArrayList<String> procedimentos = procedimentoDoPet.getProcedimentos();
 					ArrayList<Double> valores = procedimentoDoPet.getValores();
 					System.out.println("\n  *--------*--------*--------*-------*");
 					System.out.println("               Procedimentos       ");
 					System.out.println("  *--------*--------*--------*-------*");
-					for(int indice = 0; indice < procedimentos.size(); indice++) 
-					{
-						System.out.println((indice + 1) + " - Procedimento: " + 
-					procedimentos.get(indice) + " Valor: " + valores.get(indice));
+					for (int indice = 0; indice < procedimentos.size(); indice++) {
+						System.out.println((indice + 1) + " - Procedimento: " + procedimentos.get(indice) + " Valor: "
+								+ valores.get(indice));
 					}
 				}
 			}
 		}
 	}
-	
-	//Junção do listar
+
+	// Junção do listar
 	@Override
 	public void listarPets() {
 		listarGato();
 		listarCachorro();
 	}
-	
-	//Print Gato
-	public void printCadastroGato() 
-	{
+
+	// Print Gato
+	public void printCadastroGato() {
 		Iterator<CadastroAnimalGato> iFichaGato = listaCadastroGato.iterator();
-		
-		if(especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") ||
-		   especie.replaceAll("\\s", "").equalsIgnoreCase("Felina") && 
-		   iFichaGato.hasNext())
-		{
+
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina") && iFichaGato.hasNext()) {
 			CadastroAnimalGato fichaGato = iFichaGato.next();
-				
+
 			System.out.println("\n              |\\__/,|   (`\\");
 			System.out.println("            _.|o o  |_   ) )");
 			System.out.println("          -(((---(((--------");
-			
+
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("           Dados do seu Pet ");
 			System.out.println("  *--------*--------*--------*-------*");
-			
+
 			System.out.println("Nome Tutor: " + fichaGato.getNomeDono());
 			System.out.println("CPF: " + fichaGato.getCpf());
 			System.out.println("Endereço: " + fichaGato.getEndereco());
@@ -296,25 +356,22 @@ public class MenuMetodos implements MenuRepositorio {
 			System.out.println("Especie: " + fichaGato.getEspecie());
 			System.out.println("Tipo de Pelo: " + fichaGato.getPelo());
 			System.out.println("Raça: " + fichaGato.getRaca());
-			
+
 			listaProcedimentos();
 			System.out.println("\n  *--------*--------*--------*-------*");
-			System.out.println("             Valor total: " + valorTotal );
+			System.out.println("             Valor total: " + valorTotal);
 			System.out.println("  *--------*--------*--------*-------*");
 		}
 	}
-		
-	//Print Cachorro
-	public void printCadastroCachorro()
-	{
+
+	// Print Cachorro
+	public void printCadastroCachorro() {
 		Iterator<CadastroAnimalCachorro> iFichaCachorro = listaCadastroCachorro.iterator();
-		
-		if(especie.replaceAll("\\s", "").equalsIgnoreCase("Canina") || 
-		   especie.replaceAll("\\s", "").equalsIgnoreCase("Canino") &&
-		   iFichaCachorro.hasNext()) 
-		{
+
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino") && iFichaCachorro.hasNext()) {
 			CadastroAnimalCachorro fichaCachorro = iFichaCachorro.next();
-				
+
 			System.out.println("\n           |\\_/|                  ");
 			System.out.println("           | @ @  ");
 			System.out.println("           |   <>              _ ");
@@ -322,7 +379,7 @@ public class MenuMetodos implements MenuRepositorio {
 			System.out.println("           |               `--' |   ");
 			System.out.println("        ___|_       ___|   |___.' ");
 			System.out.println("       /_/_____/____/_______|");
-			
+
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("           Dados do seu Pet ");
 			System.out.println("  *--------*--------*--------*-------*");
@@ -340,17 +397,17 @@ public class MenuMetodos implements MenuRepositorio {
 			System.out.println("Valor total: " + valorTotal);
 			listaProcedimentos();
 			System.out.println("\n  *--------*--------*--------*-------*");
-			System.out.println("             Valor total: " + valorTotal );
+			System.out.println("             Valor total: " + valorTotal);
 			System.out.println("  *--------*--------*--------*-------*");
-			
+
 		}
 	}
-	
-	//Banho Gato Rita
+
+	// Banho Gato Rita
 	@Override
 	public void banhoGato() {
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") || 
-				especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			if (pelo.equalsIgnoreCase("Curto")) {
 				valor = 30.0;
 				valorTotal += valor;
@@ -387,8 +444,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("  *--------*--------*--------*-------*");
 				procedimentosLista.add("Banho           ");
 				valorLista.add(valor);
-			} else 
-			{
+			} else {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("          Tipo de pelo Inválido     ");
 				System.out.println("  *--------*--------*--------*-------*");
@@ -396,13 +452,12 @@ public class MenuMetodos implements MenuRepositorio {
 
 		}
 	}
-	
-	//Banho Cachorro
+
+	// Banho Cachorro
 	@Override
 	public void banhoCachorro() {
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina") || 
-			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")
-				) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
 			if (pelo.equalsIgnoreCase("Curto")) {
 				valor = 120.0;
 				valorTotal += valor;
@@ -457,7 +512,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("  *--------*--------*--------*-------*");
 				procedimentosLista.add("Banho          ");
 				valorLista.add(valor);
-			}else{
+			} else {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("          Tipo de pelo Inválido     ");
 				System.out.println("  *--------*--------*--------*-------*");
@@ -465,15 +520,14 @@ public class MenuMetodos implements MenuRepositorio {
 
 		}
 	}
-	
-	//Vacinar Gato
+
+	// Vacinar Gato
 	@Override
 	public void vacinarGato() {
 		int tipoVacina;
 		ArrayList<String> VacinasGato = Vacina.getVacinaGato();
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")|| 
-			especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) 
-		{
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("              Gato Vacinas ");
 			System.out.println("  *--------*--------*--------*-------*");
@@ -534,22 +588,22 @@ public class MenuMetodos implements MenuRepositorio {
 			}
 		}
 	}
-	
-	//Vacinar Cachorro
+
+	// Vacinar Cachorro
 	@Override
 	public void vacinarCachorro() {
 		int tipoVacina;
 		ArrayList<String> VacinasCachorro = Vacina.getVacinaCachorro();
 
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina") || 
-			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("            Cachorro Vacinas ");
 			System.out.println("  *--------*--------*--------*-------*");
 
 			for (int indice = 0; indice < VacinasCachorro.size(); indice++) {
 				String vacinaCachorro = VacinasCachorro.get(indice);
-				System.out.println("\n" +(indice + 1) + " - " + vacinaCachorro);
+				System.out.println("\n" + (indice + 1) + " - " + vacinaCachorro);
 			}
 			System.out.print("\nInforme o tipo de vacina: ");
 			tipoVacina = leia.nextInt();
@@ -593,14 +647,13 @@ public class MenuMetodos implements MenuRepositorio {
 			}
 		}
 	}
-		
-	//Tosa Gato Rita
+
+	// Tosa Gato Rita
 	@Override
 	public void tosaGato() {
-		
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") || 
-			especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) 
-		{
+
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			if (pelo.equalsIgnoreCase("Curto")) {
 				valor = 50.0;
 				valorTotal += valor;
@@ -636,12 +689,12 @@ public class MenuMetodos implements MenuRepositorio {
 		}
 	}
 
-	//Tosa Cachorro
+	// Tosa Cachorro
 	@Override
 	public void tosaCachorro() {
 
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
-			especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
 			if (pelo.equalsIgnoreCase("Curto")) {
 				valor = 120.0;
 				valorTotal += valor;
@@ -699,11 +752,11 @@ public class MenuMetodos implements MenuRepositorio {
 	// Castrar Gato Gabi
 	@Override
 	public void castrarGato() {
-		
+
 		Iterator<CadastroAnimalGato> iFichaGato = listaCadastroGato.iterator();
 
-		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino") || 
-				especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			if (iFichaGato.hasNext()) {
 				CadastroAnimalGato fichaGato = iFichaGato.next();
 				if (fichaGato.getEspecie().replaceAll("\\s", "").equalsIgnoreCase("Felino")) {
@@ -713,7 +766,7 @@ public class MenuMetodos implements MenuRepositorio {
 					valor = 400.0;
 					valorTotal += valor;
 					valorTotalDia += valorTotal;
-					procedimentosLista.add("Castração");
+					procedimentosLista.add("Castração      ");
 					valorLista.add(valor);
 				} else {
 					System.out.println("\n  *--------*--------*--------*-------*");
@@ -728,13 +781,11 @@ public class MenuMetodos implements MenuRepositorio {
 	@Override
 	public void castrarCachorro() {
 		Iterator<CadastroAnimalCachorro> iFichaCachorro = listaCadastroCachorro.iterator();
-		
-		if(iFichaCachorro.hasNext()) 
-		{
-			if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
-					especie.replaceAll("\\s", "").equalsIgnoreCase("Canino") 
-					&& sexo.replaceAll("\\s", "").equalsIgnoreCase("macho"))
-			{
+
+		if (iFichaCachorro.hasNext()) {
+			if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+					|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")
+							&& sexo.replaceAll("\\s", "").equalsIgnoreCase("macho")) {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("     Valor da castração Acrescentado  ");
 				System.out.println("  *--------*--------*--------*-------*");
@@ -743,11 +794,10 @@ public class MenuMetodos implements MenuRepositorio {
 				valorTotalDia += valorTotal;
 				procedimentosLista.add("Castração      ");
 				valorLista.add(valor);
-			} else if(especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
-					|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino") 
-					&& sexo.replaceAll("\\s", "").equalsIgnoreCase("Femea")
-					|| sexo.replaceAll("\\s", "").equalsIgnoreCase("Fêmea"))
-			{
+			} else if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+					|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")
+							&& sexo.replaceAll("\\s", "").equalsIgnoreCase("Femea")
+					|| sexo.replaceAll("\\s", "").equalsIgnoreCase("Fêmea")) {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("     Valor da castração Acrescentado  ");
 				System.out.println("  *--------*--------*--------*-------*");
@@ -756,27 +806,26 @@ public class MenuMetodos implements MenuRepositorio {
 				valorTotalDia += valorTotal;
 				procedimentosLista.add("Castração      ");
 				valorLista.add(valor);
-			} else 
-			{
-			
+			} else {
+
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("            Castração Inválida  ");
 				System.out.println("  *--------*--------*--------*-------*");
-				
+
 			}
-		}		
+		}
 	}
-	
-	//Acrescenta o Valor da Consulta
+
+	// Acrescenta o Valor da Consulta
 	@Override
 	public void consulta() {
-		
-		if(listaCadastroGato.isEmpty() && listaCadastroCachorro.isEmpty()) {
+
+		if (listaCadastroGato.isEmpty() && listaCadastroCachorro.isEmpty()) {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("            Cadastro pendente         ");
 			System.out.println("  *--------*--------*--------*-------*");
-		}else {
-			
+		} else {
+
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("     Valor da consulta Acrescentado  ");
 			System.out.println("  *--------*--------*--------*-------*");
@@ -788,131 +837,137 @@ public class MenuMetodos implements MenuRepositorio {
 			valorLista.add(200.00);
 		}
 	}
-	
+
 	// Saída Gabi
 	@Override
-	public void saidaAnimal() 
-	{
+	public void saidaAnimal() {
 		printCadastroGato();
 		printCadastroCachorro();
-		ProcedimentosModelo listaModeloPV = new ProcedimentosModelo(nomeAnimal, procedimentosLista, 
-																				valorLista);
+		ProcedimentosModelo listaModeloPV = new ProcedimentosModelo(nomeAnimal, procedimentosLista, valorLista);
+
 		listaPV.add(listaModeloPV);
-		
+
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("        Agradecemos a preferência ");
 		System.out.println("  *--------*--------*--------*-------*");
 
 		zerarVariaveis();
-	}	
-	
-	//Zerar Variaveis 
-	public void zerarVariaveis() 
-	{
+	}
+
+	public void gravarObjeto() {
+		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
+			CadastroAnimalCachorro animalCachorro = new CadastroAnimalCachorro(nomeTutor, endereco, cpf, especie,
+					nomeAnimal, cor, sexo, idade, peso, procedimentosLista, valorLista, pelo, raca);
+
+			listaCadastroCachorro.add(animalCachorro);
+			indiceCadastro += 1;
+
+		} else if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
+			CadastroAnimalGato animalGato = new CadastroAnimalGato(nomeTutor, endereco, cpf, especie, nomeAnimal, cor,
+					sexo, idade, peso, procedimentosLista, valorLista, pelo, raca);
+
+			listaCadastroGato.add(animalGato);
+			indiceCadastro += 1;
+
+		}
+	}
+
+	// Zerar Variaveis
+	public void zerarVariaveis() {
 		procedimentosLista.clear();
 		valorLista.clear();
 		valorTotal = 0.0;
 		especie = null;
 		nomeTutor = null;
 		cpf = null;
-		endereco = null; 
-		nomeAnimal = null; 
+		endereco = null;
+		nomeAnimal = null;
 		cor = null;
 		sexo = null;
-		idade = null; 
+		idade = null;
 		especie = null;
 		pelo = null;
 		raca = null;
 		peso = 0.0;
 	}
-	
-	//Confere se o cadastro foi finalizado ou não
-	public void cadastrarPets()
-	{
-		if(nomeTutor != null) 
-		{
+
+	// Confere se o cadastro foi finalizado ou não
+	public void cadastrarPets() {
+		if (nomeTutor != null) {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("    Finalize o cadastro e crie outro");
 			System.out.println("  *--------*--------*--------*-------*");
-		}else 
-		{
+		} else {
 			cadastrar();
 			cadastrarCachorro();
 			cadastrarGato();
 		}
 	}
-	
-	//Buscar
-	public void buscarAnimalGato() 
-	{
+
+	// Buscar
+	public void buscarAnimalGato() {
 		leia.skip("\\R?");
 		System.out.print("Digite o nome do pet: ");
 		lerString = leia.nextLine();
-		
-		for (CadastroAnimalGato Gato : listaCadastroGato) 
-		{
-			if(Gato.getNomeAnimal().equalsIgnoreCase(lerString)) 
-			{
-				
-					CadastroAnimalGato gatoEncontrado = Gato;
-					
-					System.out.println("\n              |\\__/,|   (`\\");
-					System.out.println("            _.|o o  |_   ) )");
-					System.out.println("          -(((---(((--------");
-					
-					System.out.println("\n  *--------*--------*--------*-------*");
-					System.out.println("           Dados do seu Pet ");
-					System.out.println("  *--------*--------*--------*-------*");
-					System.out.println("Peso: " + gatoEncontrado.getPeso());
-					System.out.println("Nome Tutor: " + gatoEncontrado.getNomeDono());
-					System.out.println("Cor: " + gatoEncontrado.getCor());
-					System.out.println("Sexo: " + gatoEncontrado.getSexo());
-					System.out.println("Especie: " + gatoEncontrado.getEspecie());
-					System.out.println("Endereço: " + gatoEncontrado.getEndereco());
-					System.out.println("Idade: " + gatoEncontrado.getIdade());
-					System.out.println("Dono Cpf: " + gatoEncontrado.getCpf());
-					System.out.println("Nome Animal: " + gatoEncontrado.getNomeAnimal());
-					System.out.println("Tipo de Pelo: " + gatoEncontrado.getPelo());
-					System.out.println("Raça: " + gatoEncontrado.getRaca());
-					System.out.println("Valor total: " + valorTotal);
-					
-					for(ProcedimentosModelo procedimentoDoPet : listaPV) 
-					{
-						if(procedimentoDoPet.getNomeAnimal().equalsIgnoreCase("lerString"))
-						{
-							ArrayList<String> procedimentos = procedimentoDoPet.getProcedimentos();
-							ArrayList<Double> valores = procedimentoDoPet.getValores();
-							System.out.println("\n  *--------*--------*--------*-------*");
-							System.out.println("               Procedimentos       ");
-							System.out.println("  *--------*--------*--------*-------*");
-							for(int indice = 0; indice < procedimentos.size(); indice++) 
-							{
-								System.out.println((indice + 1) + " - Procedimento: " 
-							    + procedimentos.get(indice)
-								+ " Valor: " + valores.get(indice));
-							}
+
+		for (CadastroAnimalGato Gato : listaCadastroGato) {
+			if (Gato.getNomeAnimal().equalsIgnoreCase(lerString)) {
+
+				CadastroAnimalGato gatoEncontrado = Gato;
+
+				System.out.println("\n              |\\__/,|   (`\\");
+				System.out.println("            _.|o o  |_   ) )");
+				System.out.println("          -(((---(((--------");
+
+				System.out.println("\n  *--------*--------*--------*-------*");
+				System.out.println("           Dados do seu Pet ");
+				System.out.println("  *--------*--------*--------*-------*");
+				System.out.println("Peso: " + gatoEncontrado.getPeso());
+				System.out.println("Nome Tutor: " + gatoEncontrado.getNomeDono());
+				System.out.println("Cor: " + gatoEncontrado.getCor());
+				System.out.println("Sexo: " + gatoEncontrado.getSexo());
+				System.out.println("Especie: " + gatoEncontrado.getEspecie());
+				System.out.println("Endereço: " + gatoEncontrado.getEndereco());
+				System.out.println("Idade: " + gatoEncontrado.getIdade());
+				System.out.println("Dono Cpf: " + gatoEncontrado.getCpf());
+				System.out.println("Nome Animal: " + gatoEncontrado.getNomeAnimal());
+				System.out.println("Tipo de Pelo: " + gatoEncontrado.getPelo());
+				System.out.println("Raça: " + gatoEncontrado.getRaca());
+				System.out.println("Valor total: " + valorTotal);
+
+				for (ProcedimentosModelo procedimentoDoPet : listaPV) {
+					if (procedimentoDoPet.getNomeAnimal().equalsIgnoreCase("lerString")) {
+						ArrayList<String> procedimentos = procedimentoDoPet.getProcedimentos();
+						ArrayList<Double> valores = procedimentoDoPet.getValores();
+						System.out.println("\n  *--------*--------*--------*-------*");
+						System.out.println("               Procedimentos       ");
+						System.out.println("  *--------*--------*--------*-------*");
+						for (int indice = 0; indice < procedimentos.size(); indice++) {
+							System.out.println((indice + 1) + " - Procedimento: " + procedimentos.get(indice)
+									+ " Valor: " + valores.get(indice));
 						}
 					}
-			}else {
+				}
+			} else {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("    Você ainda não cadastrou seu Pet");
 				System.out.println("  *--------*--------*--------*-------*");
 			}
 		}
 	}
-	public void buscarAnimalCachorro() 
-	{
+
+	public void buscarAnimalCachorro() {
 		listarPets();
 		leia.skip("\\R?");
 		System.out.print("Digite o nome do pet: ");
 		lerString = leia.nextLine();
-		
-		for(CadastroAnimalCachorro cachorro: listaCadastroCachorro) 
-		{
-			if(cachorro.getNomeAnimal().equalsIgnoreCase(lerString)) 
-			{
+
+		for (CadastroAnimalCachorro cachorro : listaCadastroCachorro) {
+			if (cachorro.getNomeAnimal().equalsIgnoreCase(lerString)) {
 				CadastroAnimalCachorro cachorroEncontrado = cachorro;
-				
+
 				System.out.println("\n           |\\_/|                  ");
 				System.out.println("           | @ @  ");
 				System.out.println("           |   <>              _ ");
@@ -920,7 +975,7 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("           |               `--' |   ");
 				System.out.println("        ___|_       ___|   |___.' ");
 				System.out.println("       /_/_____/____/_______|");
-				
+
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("           Dados do seu Pet ");
 				System.out.println("  *--------*--------*--------*-------*");
@@ -936,520 +991,462 @@ public class MenuMetodos implements MenuRepositorio {
 				System.out.println("Tipo de Pelo: " + cachorroEncontrado.getTipoPeloCachorro());
 				System.out.println("Raça: " + cachorroEncontrado.getRacaCachorro());
 				System.out.println("Valor total: " + valorTotal);
-				
-				for(ProcedimentosModelo procedimentoDoPet : listaPV) 
-				{
-					if(procedimentoDoPet.getNomeAnimal().equalsIgnoreCase("lerString"))
-					{
+
+				for (ProcedimentosModelo procedimentoDoPet : listaPV) {
+					if (procedimentoDoPet.getNomeAnimal().equalsIgnoreCase("lerString")) {
 						ArrayList<String> procedimentos = procedimentoDoPet.getProcedimentos();
 						ArrayList<Double> valores = procedimentoDoPet.getValores();
 						System.out.println("\n  *--------*--------*--------*-------*");
 						System.out.println("               Procedimentos       ");
 						System.out.println("  *--------*--------*--------*-------*");
-						for(int indice = 0; indice < procedimentos.size(); indice++) 
-						{
-							System.out.println((indice + 1) + " - Procedimento: " + 
-						procedimentos.get(indice) + " Valor: " + valores.get(indice));
+						for (int indice = 0; indice < procedimentos.size(); indice++) {
+							System.out.println((indice + 1) + " - Procedimento: " + procedimentos.get(indice)
+									+ " Valor: " + valores.get(indice));
 						}
 					}
 				}
-			}else {
+			} else {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("    Você ainda não cadastrou seu Pet");
 				System.out.println("  *--------*--------*--------*-------*");
 			}
-		} 
-	}	
-	
-	//Junção Do buscar
-	public void buscarAnimal() 
-	{
+		}
+	}
+
+	// Junção Do buscar
+	public void buscarAnimal() {
 		leia.skip("\\R?");
 		System.out.print("\nDigite a especie do seu pet: ");
 		lerString = leia.nextLine();
-		if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Felino")|| 
-				lerString.replaceAll("\\s", "").equalsIgnoreCase("Felina")) 
-		{
-			if (listaCadastroCachorro.isEmpty() && listaCadastroGato.isEmpty()) 
-			{
+		if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| lerString.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
+			if (listaCadastroCachorro.isEmpty() && listaCadastroGato.isEmpty()) {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("            Cadastro pendente         ");
 				System.out.println("  *--------*--------*--------*-------*");
-			}else {
+			} else {
 				buscarAnimalGato();
-			}	
-			
-		}else if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Canina")|| 
-				 lerString.replaceAll("\\s", "").equalsIgnoreCase("Canino")) 
-		{
-			if (listaCadastroCachorro.isEmpty() && listaCadastroGato.isEmpty()) 
-			{
+			}
+
+		} else if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Canina")
+				|| lerString.replaceAll("\\s", "").equalsIgnoreCase("Canino")) {
+			if (listaCadastroCachorro.isEmpty() && listaCadastroGato.isEmpty()) {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("            Cadastro pendente         ");
 				System.out.println("  *--------*--------*--------*-------*");
-			}else {
+			} else {
 				buscarAnimalCachorro();
-			}	
-		}else 
-		{
+			}
+		} else {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("   Só trabalhamos com Felino e Canina");
 			System.out.println("  *--------*--------*--------*-------*");
 		}
 	}
-	
-	//Remover Cadastro
+
+	// Remover Cadastro
 	@Override
 	public void removerCadastro() {
-	    listarPets();
-	    leia.skip("\\R?");
+		listarPets();
+		leia.skip("\\R?");
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("            Removendo Cadastro");
 		System.out.println("  *--------*--------*--------*-------*");
-	    System.out.print("\nDigite o nome do pet: ");
-	    String nomePet = leia.nextLine();
+		System.out.print("\nDigite o nome do pet: ");
+		String nomePet = leia.nextLine();
 
-	    boolean removido = false;
+		boolean removido = false;
 
-	    Iterator<CadastroAnimalGato> iteratorGato = listaCadastroGato.iterator();
-	    while (iteratorGato.hasNext()) {
-	        CadastroAnimalGato gato = iteratorGato.next();
-	        if (gato.getNomeAnimal().equalsIgnoreCase(nomePet)) {
-	            iteratorGato.remove();
-	            removido = true;
+		Iterator<CadastroAnimalGato> iteratorGato = listaCadastroGato.iterator();
+		while (iteratorGato.hasNext()) {
+			CadastroAnimalGato gato = iteratorGato.next();
+			if (gato.getNomeAnimal().equalsIgnoreCase(nomePet)) {
+				iteratorGato.remove();
+				removido = true;
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("             Cadastro Removido");
 				System.out.println("  *--------*--------*--------*-------*");
 				zerarVariaveis();
-	            break;
-	        }
-	    }
+				break;
+			}
+		}
 
-	    if (!removido) 
-	    {
-	        Iterator<CadastroAnimalCachorro> iteratorCachorro = listaCadastroCachorro.iterator();
-	        while (iteratorCachorro.hasNext()) 
-	        {
-	            CadastroAnimalCachorro cachorro = iteratorCachorro.next();
-	            if (cachorro.getNomeAnimal().equalsIgnoreCase(nomePet)) 
-	            {
-	                iteratorCachorro.remove();
-	                removido = true;
+		if (!removido) {
+			Iterator<CadastroAnimalCachorro> iteratorCachorro = listaCadastroCachorro.iterator();
+			while (iteratorCachorro.hasNext()) {
+				CadastroAnimalCachorro cachorro = iteratorCachorro.next();
+				if (cachorro.getNomeAnimal().equalsIgnoreCase(nomePet)) {
+					iteratorCachorro.remove();
+					removido = true;
 					System.out.println("\n  *--------*--------*--------*-------*");
 					System.out.println("             Cadastro Removido");
 					System.out.println("  *--------*--------*--------*-------*");
 					zerarVariaveis();
-	                break;
-	            }
-	        }
-	    }
+					break;
+				}
+			}
+		}
 
-	    if (!removido) {
+		if (!removido) {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("            Pet não encontrado");
 			System.out.println("  *--------*--------*--------*-------*");
-	    }
+		}
 	}
-	
-	//Atualizar cadastro
+
+	// Atualizar cadastro
 	@Override
-	public void atualizarCadastro() 
-	{
-	    leia.skip("\\R?");
+	public void atualizarCadastro() {
+		leia.skip("\\R?");
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("           Atualizando Cadastro");
 		System.out.println("  *--------*--------*--------*-------*");
 		System.out.print("\nDigite especie [Felino] ou [Canina]: ");
 		lerString = leia.nextLine();
-	    listarPets();
-		if (conferirEspecieGato()) 
-		{
-			if (listaCadastroCachorro.isEmpty() && listaCadastroGato.isEmpty()) 
-			{
+		listarPets();
+		if (conferirEspecieGato()) {
+			if (listaCadastroCachorro.isEmpty() && listaCadastroGato.isEmpty()) {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("            Cadastro pendente         ");
 				System.out.println("  *--------*--------*--------*-------*");
-			}else {
+			} else {
 				atualizarCadastroGato();
-			}	
-			
-		}else if (!conferirEspecieGato()) 
-		{
-			if (listaCadastroCachorro.isEmpty() && listaCadastroGato.isEmpty()) 
-			{
+			}
+
+		} else if (!conferirEspecieGato()) {
+			if (listaCadastroCachorro.isEmpty() && listaCadastroGato.isEmpty()) {
 				System.out.println("\n  *--------*--------*--------*-------*");
 				System.out.println("            Cadastro pendente         ");
 				System.out.println("  *--------*--------*--------*-------*");
-			}else {
+			} else {
 				atualizarCadastroCachorro();
-			}	
-		}else 
-		{
+			}
+		} else {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("   Só trabalhamos com Felino e Canina");
 			System.out.println("  *--------*--------*--------*-------*");
 		}
-			
+
 	}
-	
-	public boolean conferirEspecieGato() 
-	{
-		if(lerString.replaceAll("\\s", "").equalsIgnoreCase("Felino") 
-		   || lerString.replaceAll("\\s", "").equalsIgnoreCase("Felina")) 
-		{	
+
+	public boolean conferirEspecieGato() {
+		if (lerString.replaceAll("\\s", "").equalsIgnoreCase("Felino")
+				|| lerString.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			return true;
-		} else 
-		{
+		} else {
 			return false;
 		}
-			
+
 	}
-	
-	public void atualizarCadastroGato() 
-	{
+
+	public void atualizarCadastroGato() {
 		System.out.print("\nDigite o nome do pet: ");
-	    String lerString = leia.nextLine();
-	    
-	    for(CadastroAnimalGato fichaGato : listaCadastroGato) 
-		{
-		   	if (fichaGato.getNomeAnimal().replaceAll("\\s", "").equalsIgnoreCase(lerString)) 
-		   	{
-		   		CadastroAnimalGato atualizarCadastro = fichaGato;
-		   		
-		   		listaCadastroGato.remove(fichaGato);
-		   		zerarVariaveis();
-		   		
-		   		nomeTutor = atualizarCadastro.getNomeDono();
-		   		cpf = atualizarCadastro.getCpf();
-		   		endereco = atualizarCadastro.getEndereco();
-		   		nomeAnimal = atualizarCadastro.getNomeAnimal();
-		   		cor = atualizarCadastro.getCor();
-		   		sexo = atualizarCadastro.getSexo();
-		   		idade = atualizarCadastro.getIdade();
-		   		especie = atualizarCadastro.getEspecie();
-		   		pelo = atualizarCadastro.getPelo();
-		   		raca = atualizarCadastro.getRaca();
-		   		peso = atualizarCadastro.getPeso();
-		   		procedimentosLista = atualizarCadastro.getProcedimentos();
-		   		valorLista = atualizarCadastro.getValor();
-		   		
-		   		boolean continua = true;
-		   		while(continua) 
-		   		{	
-		   			System.out.println("\n  *--------*--------*--------*-------*");
-		   		    System.out.println("          1 - Alterar nome do tutor");
-		   		    System.out.println("          2 - Alterar CPF");
-		   		    System.out.println("          3 - Alterar endereço");
-		   		    System.out.println("          4 - Alterar nome do pet");
-		   		    System.out.println("          5 - Alterar cor");
-		   		    System.out.println("          6 - Alterar sexo");
-		   		    System.out.println("          7 - Alterar idade");
-		   		    System.out.println("          8 - Alterar peso");
-		   		    System.out.println("          9 - Alterar espécie");
-		   		    System.out.println("          10 - Sair");
-		   			System.out.println("  *--------*--------*--------*-------*");
-		   		    System.out.print("\nEscolha a opção: ");
-		   		    lerInteiro = leia.nextInt();
-		   		    
-		   		    switch(lerInteiro) 
-		   		    {
-		   		    	case 1 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo nome: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setNomeDono(lerString);
-		   		    		nomeTutor = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 2 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo CPF: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setCpf(lerString);
-		   		    		cpf = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 3 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo endereço: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setEndereco(lerString);
-		   		    		endereco = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 4 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo nome do Pet: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setNomeAnimal(lerString);
-		   		    		nomeAnimal = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 5 -> 
-		   		    	{
-		   		    		System.out.print("Digite a nova cor: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setCor(lerString);
-		   		    		cor = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 6 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo sexo: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setSexo(lerString);
-		   		    		sexo = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 7 -> 
-		   		    	{
-		   		    		System.out.print("Digite a novo Idade: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setIdade(lerString);
-		   		    		idade = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 8 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo peso: ");
-		   		    		lerDouble = leia.nextDouble();
-		   		    		atualizarCadastro.setPeso(lerDouble);
-		   		    		peso = lerDouble;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 9 -> 
-		   		    	{
-		   		    		System.out.print("Digite a nova especie [Felino] ou [Canina]: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setEspecie(lerString);
-		   		    		especie = lerString;
-		   		    		cadastrarGato();
-		   		    		cadastrarCachorro();
-		   			   		atualizarCadastro.setPelo(pelo);
-		   			   		atualizarCadastro.setRaca(lerString);
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 10 -> 
-		   		    	{
-		   		    		
-		   		    		listaCadastroGato.add(atualizarCadastro);
-		   		    		System.out.println("\n  *--------*--------*--------*-------*");
-		   		    		System.out.println("           Atualização encerrada");
-		   		    		System.out.println("  *--------*--------*--------*-------*");
-		   		    		continua = false;
-		   		    	}
-		   		    	default->
-		   		    	{
-		   		    		System.out.println("\n  *--------*--------*--------*-------*");
-		   		    		System.out.println("              Opção Invalida");
-		   		    		System.out.println("  *--------*--------*--------*-------*");
-		   		    	}
-		   		    }
-		   		}
-		   	}else 
-		   	{
-		    	System.out.println("\n  *--------*--------*--------*-------*");
-		    	System.out.println("              Nome Invalido");
-		    	System.out.println("  *--------*--------*--------*-------*");
-		   	}
-		}   
+		String lerString = leia.nextLine();
+
+		for (CadastroAnimalGato fichaGato : listaCadastroGato) {
+			if (fichaGato.getNomeAnimal().replaceAll("\\s", "").equalsIgnoreCase(lerString)) {
+				CadastroAnimalGato atualizarCadastro = fichaGato;
+
+				listaCadastroGato.remove(fichaGato);
+				zerarVariaveis();
+
+				nomeTutor = atualizarCadastro.getNomeDono();
+				cpf = atualizarCadastro.getCpf();
+				endereco = atualizarCadastro.getEndereco();
+				nomeAnimal = atualizarCadastro.getNomeAnimal();
+				cor = atualizarCadastro.getCor();
+				sexo = atualizarCadastro.getSexo();
+				idade = atualizarCadastro.getIdade();
+				especie = atualizarCadastro.getEspecie();
+				pelo = atualizarCadastro.getPelo();
+				raca = atualizarCadastro.getRaca();
+				peso = atualizarCadastro.getPeso();
+				procedimentosLista = atualizarCadastro.getProcedimentos();
+				valorLista = atualizarCadastro.getValor();
+
+				boolean continua = true;
+				while (continua) {
+					System.out.println("\n  *--------*--------*--------*-------*");
+					System.out.println("          1 - Alterar nome do tutor");
+					System.out.println("          2 - Alterar CPF");
+					System.out.println("          3 - Alterar endereço");
+					System.out.println("          4 - Alterar nome do pet");
+					System.out.println("          5 - Alterar cor");
+					System.out.println("          6 - Alterar sexo");
+					System.out.println("          7 - Alterar idade");
+					System.out.println("          8 - Alterar peso");
+					System.out.println("          9 - Alterar espécie");
+					System.out.println("          10 - Sair");
+					System.out.println("  *--------*--------*--------*-------*");
+					System.out.print("\nEscolha a opção: ");
+					lerInteiro = leia.nextInt();
+
+					switch (lerInteiro) {
+					case 1 -> {
+						System.out.print("Digite o novo nome: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setNomeDono(lerString);
+						nomeTutor = lerString;
+						cadastroAtualizado();
+					}
+					case 2 -> {
+						System.out.print("Digite o novo CPF: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setCpf(lerString);
+						cpf = lerString;
+						cadastroAtualizado();
+					}
+					case 3 -> {
+						System.out.print("Digite o novo endereço: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setEndereco(lerString);
+						endereco = lerString;
+						cadastroAtualizado();
+					}
+					case 4 -> {
+						System.out.print("Digite o novo nome do Pet: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setNomeAnimal(lerString);
+						nomeAnimal = lerString;
+						cadastroAtualizado();
+					}
+					case 5 -> {
+						System.out.print("Digite a nova cor: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setCor(lerString);
+						cor = lerString;
+						cadastroAtualizado();
+					}
+					case 6 -> {
+						System.out.print("Digite o novo sexo: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setSexo(lerString);
+						sexo = lerString;
+						cadastroAtualizado();
+					}
+					case 7 -> {
+						System.out.print("Digite a novo Idade: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setIdade(lerString);
+						idade = lerString;
+						cadastroAtualizado();
+					}
+					case 8 -> {
+						System.out.print("Digite o novo peso: ");
+						lerDouble = leia.nextDouble();
+						atualizarCadastro.setPeso(lerDouble);
+						peso = lerDouble;
+						cadastroAtualizado();
+					}
+					case 9 -> {
+						System.out.print("Digite a nova especie [Felino] ou [Canina]: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setEspecie(lerString);
+						especie = lerString;
+						atualizarEspecieGato();
+						atualizarCadastroCachorro();
+						atualizarCadastro.setPelo(pelo);
+						atualizarCadastro.setRaca(raca);
+						cadastroAtualizado();
+					}
+					case 10 -> {
+
+						listaCadastroGato.add(atualizarCadastro);
+						System.out.println("\n  *--------*--------*--------*-------*");
+						System.out.println("           Atualização encerrada");
+						System.out.println("  *--------*--------*--------*-------*");
+						continua = false;
+					}
+					default -> {
+						System.out.println("\n  *--------*--------*--------*-------*");
+						System.out.println("              Opção Invalida");
+						System.out.println("  *--------*--------*--------*-------*");
+					}
+					}
+				}
+			} else {
+				System.out.println("\n  *--------*--------*--------*-------*");
+				System.out.println("              Nome Invalido");
+				System.out.println("  *--------*--------*--------*-------*");
+			}
+		}
 	}
-	
-	public void cadastroAtualizado() 
-	{
+
+	public void cadastroAtualizado() {
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("            Cadastro Atualizado ");
 		System.out.println("  *--------*--------*--------*-------*");
 	}
-	
-	public void atualizarCadastroCachorro() 
-	{
+
+	public void atualizarCadastroCachorro() {
 		System.out.print("Digite o nome do pet: ");
-	    String lerString = leia.nextLine();
-	    
-	    for(CadastroAnimalCachorro fichaCachorro : listaCadastroCachorro) 
-		{
-		   	if (fichaCachorro.getNomeAnimal().replaceAll("\\s", "").equalsIgnoreCase(lerString)) 
-		   	{
-		   		CadastroAnimalCachorro atualizarCadastro = fichaCachorro;
-		   		
-		   		listaCadastroCachorro.remove(fichaCachorro);
-		   		zerarVariaveis();
-		   		nomeTutor = atualizarCadastro.getNomeDono();
-		   		cpf = atualizarCadastro.getCpf();
-		   		endereco = atualizarCadastro.getEndereco();
-		   		nomeAnimal = atualizarCadastro.getNomeAnimal();
-		   		cor = atualizarCadastro.getCor();
-		   		sexo = atualizarCadastro.getSexo();
-		   		idade = atualizarCadastro.getIdade();
-		   		especie = atualizarCadastro.getEspecie();
-		   		pelo = atualizarCadastro.getTipoPeloCachorro();
-		   		peso = atualizarCadastro.getPeso();
-		   		raca = atualizarCadastro.getRacaCachorro();
-		   		procedimentosLista = atualizarCadastro.getProcedimentos();
-		   		valorLista = atualizarCadastro.getValor();
-		   		
-		   		boolean continua = true;
-		   		while(continua) 
-		   		{	
-		   			System.out.println("\n  *--------*--------*--------*-------*");
-		   		    System.out.println("          1 - Alterar nome do tutor");
-		   		    System.out.println("          2 - Alterar CPF");
-		   		    System.out.println("          3 - Alterar endereço");
-		   		    System.out.println("          4 - Alterar nome do pet");
-		   		    System.out.println("          5 - Alterar cor");
-		   		    System.out.println("          6 - Alterar sexo");
-		   		    System.out.println("          7 - Alterar idade");
-		   		    System.out.println("          8 - Alterar peso");
-		   		    System.out.println("          9 - Alterar espécie");
-		   		    System.out.println("          10 - Sair");
-		   			System.out.println("  *--------*--------*--------*-------*");
-		   		    System.out.print("\nEscolha a opção: ");
-		   		    lerInteiro = leia.nextInt();
-		   		    
-		   		    switch(lerInteiro) 
-		   		    {
-		   		    	case 1 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo nome: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setNomeDono(lerString);
-		   		    		nomeTutor = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 2 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo CPF: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setCpf(lerString);
-		   		    		cpf = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 3 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo endereço: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setEndereco(lerString);
-		   		    		endereco = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 4 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo nome do Pet: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setNomeAnimal(lerString);
-		   		    		nomeAnimal = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 5 -> 
-		   		    	{
-		   		    		System.out.print("Digite a nova cor: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setCor(lerString);
-		   		    		cor = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 6 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo sexo: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setSexo(lerString);
-		   		    		sexo = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 7 -> 
-		   		    	{
-		   		    		System.out.print("Digite a novo Idade: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setIdade(lerString);
-		   		    		idade = lerString;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 8 -> 
-		   		    	{
-		   		    		System.out.print("Digite o novo peso: ");
-		   		    		lerDouble = leia.nextDouble();
-		   		    		atualizarCadastro.setPeso(lerDouble);
-		   		    		peso = lerDouble;
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 9 -> 
-		   		    	{
-		   		    		System.out.print("Digite a nova especie [Felino] ou [Canina]: ");
-		   		    		leia.skip("\\R?");
-		   		    		lerString = leia.nextLine();
-		   		    		atualizarCadastro.setEspecie(lerString);
-		   		    		especie = lerString;
-		   		    		cadastrarGato();
-		   		    		cadastrarCachorro();
-		   		    		cadastroAtualizado();
-		   		    	}
-		   		    	case 10 -> 
-		   		    	{
-		   		    		listaCadastroCachorro.add(atualizarCadastro);
-		   		    		System.out.println("\n  *--------*--------*--------*-------*");
-		   		    		System.out.println("           Atualização encerrada");
-		   		    		System.out.println("  *--------*--------*--------*-------*");
-		   		    		continua = false;
-		   		    	}
-		   		    	default->
-		   		    	{
-		   		    		System.out.println("\n  *--------*--------*--------*-------*");
-		   		    		System.out.println("              Opção Invalida");
-		   		    		System.out.println("  *--------*--------*--------*-------*");
-		   		    	}
-		   		    }
-		   		}
-		   	}else 
-		   	{
-		    	System.out.println("\n  *--------*--------*--------*-------*");
-		    	System.out.println("              Nome Invalido");
-		    	System.out.println("  *--------*--------*--------*-------*");
-		   	}
-		}   
+		String lerString = leia.nextLine();
+
+		for (CadastroAnimalCachorro fichaCachorro : listaCadastroCachorro) {
+			if (fichaCachorro.getNomeAnimal().replaceAll("\\s", "").equalsIgnoreCase(lerString)) {
+				CadastroAnimalCachorro atualizarCadastro = fichaCachorro;
+
+				listaCadastroCachorro.remove(fichaCachorro);
+				zerarVariaveis();
+				nomeTutor = atualizarCadastro.getNomeDono();
+				cpf = atualizarCadastro.getCpf();
+				endereco = atualizarCadastro.getEndereco();
+				nomeAnimal = atualizarCadastro.getNomeAnimal();
+				cor = atualizarCadastro.getCor();
+				sexo = atualizarCadastro.getSexo();
+				idade = atualizarCadastro.getIdade();
+				especie = atualizarCadastro.getEspecie();
+				pelo = atualizarCadastro.getTipoPeloCachorro();
+				peso = atualizarCadastro.getPeso();
+				raca = atualizarCadastro.getRacaCachorro();
+				procedimentosLista = atualizarCadastro.getProcedimentos();
+				valorLista = atualizarCadastro.getValor();
+
+				boolean continua = true;
+				while (continua) {
+					System.out.println("\n  *--------*--------*--------*-------*");
+					System.out.println("          1 - Alterar nome do tutor");
+					System.out.println("          2 - Alterar CPF");
+					System.out.println("          3 - Alterar endereço");
+					System.out.println("          4 - Alterar nome do pet");
+					System.out.println("          5 - Alterar cor");
+					System.out.println("          6 - Alterar sexo");
+					System.out.println("          7 - Alterar idade");
+					System.out.println("          8 - Alterar peso");
+					System.out.println("          9 - Alterar espécie");
+					System.out.println("          10 - Sair");
+					System.out.println("  *--------*--------*--------*-------*");
+					System.out.print("\nEscolha a opção: ");
+					lerInteiro = leia.nextInt();
+
+					switch (lerInteiro) {
+					case 1 -> {
+						System.out.print("Digite o novo nome: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setNomeDono(lerString);
+						nomeTutor = lerString;
+						cadastroAtualizado();
+					}
+					case 2 -> {
+						System.out.print("Digite o novo CPF: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setCpf(lerString);
+						cpf = lerString;
+						cadastroAtualizado();
+					}
+					case 3 -> {
+						System.out.print("Digite o novo endereço: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setEndereco(lerString);
+						endereco = lerString;
+						cadastroAtualizado();
+					}
+					case 4 -> {
+						System.out.print("Digite o novo nome do Pet: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setNomeAnimal(lerString);
+						nomeAnimal = lerString;
+						cadastroAtualizado();
+					}
+					case 5 -> {
+						System.out.print("Digite a nova cor: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setCor(lerString);
+						cor = lerString;
+						cadastroAtualizado();
+					}
+					case 6 -> {
+						System.out.print("Digite o novo sexo: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setSexo(lerString);
+						sexo = lerString;
+						cadastroAtualizado();
+					}
+					case 7 -> {
+						System.out.print("Digite a novo Idade: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setIdade(lerString);
+						idade = lerString;
+						cadastroAtualizado();
+					}
+					case 8 -> {
+						System.out.print("Digite o novo peso: ");
+						lerDouble = leia.nextDouble();
+						atualizarCadastro.setPeso(lerDouble);
+						peso = lerDouble;
+						cadastroAtualizado();
+					}
+					case 9 -> {
+						System.out.print("Digite a nova especie [Felino] ou [Canina]: ");
+						leia.skip("\\R?");
+						lerString = leia.nextLine();
+						atualizarCadastro.setEspecie(lerString);
+						especie = lerString;
+						atualizarEspecieGato();
+						atualizarCadastroCachorro();
+						atualizarCadastro.setTipoPeloCachorro(pelo);
+						atualizarCadastro.setRacaCachorro(raca);
+						cadastroAtualizado();
+					}
+					case 10 -> {
+						listaCadastroCachorro.add(atualizarCadastro);
+						System.out.println("\n  *--------*--------*--------*-------*");
+						System.out.println("           Atualização encerrada");
+						System.out.println("  *--------*--------*--------*-------*");
+						continua = false;
+					}
+					default -> {
+						System.out.println("\n  *--------*--------*--------*-------*");
+						System.out.println("              Opção Invalida");
+						System.out.println("  *--------*--------*--------*-------*");
+					}
+					}
+				}
+			} else {
+				System.out.println("\n  *--------*--------*--------*-------*");
+				System.out.println("              Nome Invalido");
+				System.out.println("  *--------*--------*--------*-------*");
+			}
+		}
 	}
-	
-	//Sair Expediente
-	public boolean sairExpediente()
-	{
-		if(nomeTutor != null) 
-		{
+
+	// Sair Expediente
+	public boolean sairExpediente() {
+		if (nomeTutor != null) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	//Mostra Cadastro Pendente 
-	public void mostraCadastroPendenteSaida() 
-	{
+
+	// Mostra Cadastro Pendente
+	public void mostraCadastroPendenteSaida() {
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("    Finalização de cadastro pendente ");
 		System.out.println("  *--------*--------*--------*-------*");
 	}
-	
-	//Mostra Valor total do dia
-	public void mostraSaida() 
-	{
+
+	// Mostra Valor total do dia
+	public void mostraSaida() {
 		System.out.println("\n  *--------*--------*--------*-------*");
 		System.out.println("          Expediente Finalizado      ");
 		System.out.println("  *--------*--------*--------*-------*");
-		System.out.println("         Valor Total do dia: " + valorTotalDia );
+		System.out.println("         Valor Total do dia: " + valorTotalDia);
 		System.out.println("\n      /^--^\\     /^--^\\     /^--^\\");
 		System.out.println("      \\____/     \\____/     \\____/");
 		System.out.println("      /    \\     /    \\     /    \\");
@@ -1461,24 +1458,18 @@ public class MenuMetodos implements MenuRepositorio {
 		System.out.println(" | | | | \\/| | | |\\/| | | | | |\\/ | | | |");
 		System.out.println("|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|");
 	}
-	
 
-	//Listagem de procedimentos por animal
-	public void listaProcedimentos() 
-	{
-		if(nomeAnimal != null && procedimentosLista != null && valorLista != null ) 
-		{
+	// Listagem de procedimentos por animal
+	public void listaProcedimentos() {
+		if (nomeAnimal != null && procedimentosLista != null && valorLista != null) {
 			System.out.println("\n  *--------*--------*--------*-------*");
 			System.out.println("               Procedimentos       ");
 			System.out.println("  *--------*--------*--------*-------*");
-			for(int indice = 0; indice < procedimentosLista.size(); indice++) 
-			{
-				System.out.println((indice + 1) + " - Procedimento: " + 
-									procedimentosLista.get(indice) + 
-									valorLista.get(indice));
+			for (int indice = 0; indice < procedimentosLista.size(); indice++) {
+				System.out.println(
+						 "  - Procedimento: " + procedimentosLista.get(indice) + valorLista.get(indice));
 			}
-			
-			
+
 		}
 	}
 }
