@@ -74,7 +74,7 @@ public class MenuMetodos implements MenuRepositorio {
 	@Override
 	public void cadastrarGato() {
 		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Felino")
-				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina") && especie == null) {
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Felina")) {
 			List<String> racas = CadastroAnimalGato.getRacas();
 			List<String> tipoPelo = CadastroAnimalGato.getTipoPelo();
 
@@ -157,7 +157,8 @@ public class MenuMetodos implements MenuRepositorio {
 	@Override
 	public void cadastrarCachorro() {
 		if (especie.replaceAll("\\s", "").equalsIgnoreCase("Canina")
-				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino") && pelo == null && valor != 0.0) {
+				|| especie.replaceAll("\\s", "").equalsIgnoreCase("Canino")) 
+		{
 			ArrayList<String> racasCachorro = CadastroAnimalCachorro.getRacaCachorros();
 			ArrayList<String> pelosCachorro = CadastroAnimalCachorro.getTipoPeloCachorros();
 
@@ -263,17 +264,16 @@ public class MenuMetodos implements MenuRepositorio {
 			System.out.println("Especie: " + listarGato.getEspecie());
 			System.out.println("Raça: " + listarGato.getRaca());
 
-			for (ProcedimentosModelo procedimentoDoPet : listaPV) {
-				if (procedimentoDoPet.getNomeAnimal().equalsIgnoreCase(listarGato.getNomeAnimal())) {
+			for (ProcedimentosModelo procedimentoDoPet : listaPV) 
+			{
 					ArrayList<String> procedimentos = procedimentoDoPet.getProcedimentos();
 					ArrayList<Double> valores = procedimentoDoPet.getValores();
 					System.out.println("\n  *--------*--------*--------*-------*");
 					System.out.println("               Procedimentos       ");
 					System.out.println("  *--------*--------*--------*-------*");
 					for (int indice = 0; indice < procedimentos.size(); indice++) {
-						System.out.println((indice + 1) + " - Procedimento: " + procedimentos.get(indice) + " Valor: "
+						System.out.println("  - Procedimento: " + procedimentos.get(indice)
 								+ valores.get(indice));
-					}
 				}
 			}
 		}
