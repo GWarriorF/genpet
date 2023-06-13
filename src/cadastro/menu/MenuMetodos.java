@@ -306,17 +306,17 @@ public class MenuMetodos implements MenuRepositorio {
 			System.out.println("Cor do Pet: " + listarCachorro.getCor());
 			System.out.println("Especie: " + listarCachorro.getEspecie());
 			System.out.println("Raça: " + listarCachorro.getRacaCachorro());
-			for (ProcedimentosModelo procedimentoDoPet : listaPV) {
-				if (procedimentoDoPet.getNomeAnimal().equalsIgnoreCase(listarCachorro.getNomeAnimal())) {
+			
+			for (ProcedimentosModelo procedimentoDoPet : listaPV) 
+			{
 					ArrayList<String> procedimentos = procedimentoDoPet.getProcedimentos();
 					ArrayList<Double> valores = procedimentoDoPet.getValores();
 					System.out.println("\n  *--------*--------*--------*-------*");
 					System.out.println("               Procedimentos       ");
 					System.out.println("  *--------*--------*--------*-------*");
 					for (int indice = 0; indice < procedimentos.size(); indice++) {
-						System.out.println((indice + 1) + " - Procedimento: " + procedimentos.get(indice) + " Valor: "
+					System.out.println("  - Procedimento: " + procedimentos.get(indice)
 								+ valores.get(indice));
-					}
 				}
 			}
 		}
